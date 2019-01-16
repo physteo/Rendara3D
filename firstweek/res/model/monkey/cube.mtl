@@ -1,0 +1,27 @@
+# Blender MTL File: 'cube.blend'
+# Material Count: 2
+
+newmtl Material.001
+Ns 96.078431
+Ka 1.000000 1.000000 1.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd C:\Users\matte\source\repos\OpenGL\firstweek\res\textures\roots.png
+map_Bump C:\\Users\\matte\\source\\repos\\OpenGL\\firstweek\\res\\textures\\roots_normal.png
+
+newmtl lol
+Ns 96.078431
+Ka 1.000000 1.000000 1.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd C:\Users\matte\source\repos\OpenGL\firstweek\res\textures\brickwall.jpg
+map_Bump C:\\Users\\matte\\source\\repos\\OpenGL\\firstweek\\res\\textures\\brickwall_normal.jpg
+map_Ks C:\\Users\\matte\\source\\repos\\OpenGL\\firstweek\\res\\textures\\black.jpg

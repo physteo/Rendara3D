@@ -1,0 +1,48 @@
+# CMake generation dependency list for this directory.
+C:/Users/matte/source/repos/OpenGL/Dependencies/assimp-4.1.0/CMakeLists.txt
+C:/Users/matte/source/repos/OpenGL/Dependencies/assimp/CMakeFiles/3.9.2/CMakeSystem.cmake
+C:/Program Files (x86)/CMake/share/cmake-3.9/Modules/CMakeSystemSpecificInitialize.cmake
+C:/Users/matte/source/repos/OpenGL/Dependencies/assimp/CMakeFiles/3.9.2/CMakeCCompiler.cmake
+C:/Users/matte/source/repos/OpenGL/Dependencies/assimp/CMakeFiles/3.9.2/CMakeCXXCompiler.cmake
+C:/Program Files (x86)/CMake/share/cmake-3.9/Modules/CMakeSystemSpecificInformation.cmake
+C:/Program Files (x86)/CMake/share/cmake-3.9/Modules/CMakeGenericSystem.cmake
+C:/Program Files (x86)/CMake/share/cmake-3.9/Modules/Platform/Windows.cmake
+C:/Program Files (x86)/CMake/share/cmake-3.9/Modules/Platform/WindowsPaths.cmake
+C:/Program Files (x86)/CMake/share/cmake-3.9/Modules/CMakeCInformation.cmake
+C:/Program Files (x86)/CMake/share/cmake-3.9/Modules/CMakeLanguageInformation.cmake
+C:/Program Files (x86)/CMake/share/cmake-3.9/Modules/Platform/Windows-MSVC-C.cmake
+C:/Program Files (x86)/CMake/share/cmake-3.9/Modules/Platform/Windows-MSVC.cmake
+C:/Users/matte/source/repos/OpenGL/Dependencies/assimp/CMakeFiles/3.9.2/CMakeRCCompiler.cmake
+C:/Program Files (x86)/CMake/share/cmake-3.9/Modules/CMakeRCInformation.cmake
+C:/Program Files (x86)/CMake/share/cmake-3.9/Modules/CMakeCommonLanguageInclude.cmake
+C:/Program Files (x86)/CMake/share/cmake-3.9/Modules/CMakeCXXInformation.cmake
+C:/Program Files (x86)/CMake/share/cmake-3.9/Modules/CMakeLanguageInformation.cmake
+C:/Program Files (x86)/CMake/share/cmake-3.9/Modules/Compiler/MSVC-CXX.cmake
+C:/Program Files (x86)/CMake/share/cmake-3.9/Modules/Compiler/CMakeCommonCompilerMacros.cmake
+C:/Program Files (x86)/CMake/share/cmake-3.9/Modules/Platform/Windows-MSVC-CXX.cmake
+C:/Program Files (x86)/CMake/share/cmake-3.9/Modules/Platform/Windows-MSVC.cmake
+C:/Program Files (x86)/CMake/share/cmake-3.9/Modules/CMakeCommonLanguageInclude.cmake
+C:/Users/matte/source/repos/OpenGL/Dependencies/assimp-4.1.0/revision.h.in
+C:/Users/matte/source/repos/OpenGL/Dependencies/assimp-4.1.0/include/assimp/config.h.in
+C:/Users/matte/source/repos/OpenGL/Dependencies/assimp-4.1.0/cmake-modules/FindPkgMacros.cmake
+C:/Users/matte/source/repos/OpenGL/Dependencies/assimp-4.1.0/cmake-modules/PrecompiledHeader.cmake
+C:/Users/matte/source/repos/OpenGL/Dependencies/assimp-4.1.0/cmake-modules/cmake_uninstall.cmake.in
+C:/Users/matte/source/repos/OpenGL/Dependencies/assimp-4.1.0/assimp-config.cmake.in
+C:/Users/matte/source/repos/OpenGL/Dependencies/assimp-4.1.0/assimp-config-version.cmake.in
+C:/Users/matte/source/repos/OpenGL/Dependencies/assimp-4.1.0/cmake-modules/FindDirectX.cmake
+C:/Users/matte/source/repos/OpenGL/Dependencies/assimp-4.1.0/cmake-modules/FindPkgMacros.cmake
+C:/Users/matte/source/repos/OpenGL/Dependencies/assimp-4.1.0/cmake-modules/FindZLIB.cmake
+C:/Users/matte/source/repos/OpenGL/Dependencies/assimp-4.1.0/cmake-modules/FindPkgMacros.cmake
+C:/Program Files (x86)/CMake/share/cmake-3.9/Modules/FindPkgConfig.cmake
+C:/Program Files (x86)/CMake/share/cmake-3.9/Modules/FindPackageHandleStandardArgs.cmake
+C:/Program Files (x86)/CMake/share/cmake-3.9/Modules/FindPackageMessage.cmake
+C:/Program Files (x86)/CMake/share/cmake-3.9/Modules/FindPkgConfig.cmake
+C:/Program Files (x86)/CMake/share/cmake-3.9/Modules/FindPackageHandleStandardArgs.cmake
+C:/Program Files (x86)/CMake/share/cmake-3.9/Modules/FindPackageMessage.cmake
+C:/Users/matte/source/repos/OpenGL/Dependencies/assimp-4.1.0/cmake-modules/FindDevIL.cmake
+C:/Program Files (x86)/CMake/share/cmake-3.9/Modules/FindPackageHandleStandardArgs.cmake
+C:/Program Files (x86)/CMake/share/cmake-3.9/Modules/FindPackageMessage.cmake
+C:/Program Files (x86)/CMake/share/cmake-3.9/Modules/FindOpenGL.cmake
+C:/Program Files (x86)/CMake/share/cmake-3.9/Modules/FindPackageHandleStandardArgs.cmake
+C:/Program Files (x86)/CMake/share/cmake-3.9/Modules/FindPackageMessage.cmake
+C:/Users/matte/source/repos/OpenGL/Dependencies/assimp-4.1.0/assimp.pc.in

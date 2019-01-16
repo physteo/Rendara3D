@@ -1,0 +1,288 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\assimp-4.1.0\contrib\gtest\src\gtest-all.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\assimp-4.1.0\test\unit\CCompilerTest.c">
+      <Filter>UnitTests\Compiler</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\assimp-4.1.0\test\unit\Main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\assimp-4.1.0\code\Version.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\assimp-4.1.0\test\unit\utIOSystem.cpp">
+      <Filter>UnitTests\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\assimp-4.1.0\test\unit\utIOStreamBuffer.cpp">
+      <Filter>UnitTests\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\assimp-4.1.0\test\unit\utIssues.cpp">
+      <Filter>UnitTests\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\assimp-4.1.0\test\unit\utAnim.cpp">
+      <Filter>UnitTests\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\assimp-4.1.0\test\unit\AssimpAPITest.cpp">
+      <Filter>UnitTests\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\assimp-4.1.0\test\unit\utBatchLoader.cpp">
+      <Filter>UnitTests\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\assimp-4.1.0\test\unit\utDefaultIOStream.cpp">
+      <Filter>UnitTests\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\assimp-4.1.0\test\unit\utFastAtof.cpp">
+      <Filter>UnitTests\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\assimp-4.1.0\test\unit\utMetadata.cpp">
+      <Filter>UnitTests\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\assimp-4.1.0\test\unit\SceneDiffer.cpp">
+      <Filter>UnitTests\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\assimp-4.1.0\test\unit\AbstractImportExportBase.cpp">
+      <Filter>UnitTests\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\assimp-4.1.0\test\unit\utTypes.cpp">
+      <Filter>UnitTests\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\assimp-4.1.0\test\unit\utVersion.cpp">
+      <Filter>UnitTests\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\assimp-4.1.0\test\unit\utProfiler.cpp">
+      <Filter>UnitTests\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\assimp-4.1.0\test\unit\utSharedPPData.cpp">
+      <Filter>UnitTests\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\assimp-4.1.0\test\unit\utStringUtils.cpp">
+      <Filter>UnitTests\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\assimp-4.1.0\test\unit\utLWSImportExport.cpp">
+      <Filter>UnitTests\Importers</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\assimp-4.1.0\test\unit\utSMDImportExport.cpp">
+      <Filter>UnitTests\Importers</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\assimp-4.1.0\test\unit\utglTFImportExport.cpp">
+      <Filter>UnitTests\Importers</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\assimp-4.1.0\test\unit\utglTF2ImportExport.cpp">
+      <Filter>UnitTests\Importers</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\assimp-4.1.0\test\unit\utHMPImportExport.cpp">
+      <Filter>UnitTests\Importers</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\assimp-4.1.0\test\unit\utIFCImportExport.cpp">
+      <Filter>UnitTests\Importers</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\assimp-4.1.0\test\unit\utFBXImporterExporter.cpp">
+      <Filter>UnitTests\Importers</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\assimp-4.1.0\test\unit\utImporter.cpp">
+      <Filter>UnitTests\Importers</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\assimp-4.1.0\test\unit\ut3DImportExport.cpp">
+      <Filter>UnitTests\Importers</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\assimp-4.1.0\test\unit\ut3DSImportExport.cpp">
+      <Filter>UnitTests\Importers</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\assimp-4.1.0\test\unit\utACImportExport.cpp">
+      <Filter>UnitTests\Importers</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\assimp-4.1.0\test\unit\utAMFImportExport.cpp">
+      <Filter>UnitTests\Importers</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\assimp-4.1.0\test\unit\utASEImportExport.cpp">
+      <Filter>UnitTests\Importers</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\assimp-4.1.0\test\unit\utD3MFImportExport.cpp">
+      <Filter>UnitTests\Importers</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\assimp-4.1.0\test\unit\utQ3DImportExport.cpp">
+      <Filter>UnitTests\Importers</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\assimp-4.1.0\test\unit\utSTLImportExport.cpp">
+      <Filter>UnitTests\Importers</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\assimp-4.1.0\test\unit\utXImporterExporter.cpp">
+      <Filter>UnitTests\Importers</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\assimp-4.1.0\test\unit\utX3DImportExport.cpp">
+      <Filter>UnitTests\Importers</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\assimp-4.1.0\test\unit\utDXFImporterExporter.cpp">
+      <Filter>UnitTests\Importers</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\assimp-4.1.0\test\unit\utPMXImporter.cpp">
+      <Filter>UnitTests\Importers</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\assimp-4.1.0\test\unit\utPLYImportExport.cpp">
+      <Filter>UnitTests\Importers</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\assimp-4.1.0\test\unit\utObjImportExport.cpp">
+      <Filter>UnitTests\Importers</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\assimp-4.1.0\test\unit\utObjTools.cpp">
+      <Filter>UnitTests\Importers</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\assimp-4.1.0\test\unit\utOpenGEXImportExport.cpp">
+      <Filter>UnitTests\Importers</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\assimp-4.1.0\test\unit\utSIBImporter.cpp">
+      <Filter>UnitTests\Importers</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\assimp-4.1.0\test\unit\utBlenderIntermediate.cpp">
+      <Filter>UnitTests\Importers</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\assimp-4.1.0\test\unit\utBlendImportAreaLight.cpp">
+      <Filter>UnitTests\Importers</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\assimp-4.1.0\test\unit\utBlenderImportExport.cpp">
+      <Filter>UnitTests\Importers</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\assimp-4.1.0\test\unit\utBlendImportMaterials.cpp">
+      <Filter>UnitTests\Importers</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\assimp-4.1.0\test\unit\utBVHImportExport.cpp">
+      <Filter>UnitTests\Importers</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\assimp-4.1.0\test\unit\utColladaExportCamera.cpp">
+      <Filter>UnitTests\Importers</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\assimp-4.1.0\test\unit\utColladaExportLight.cpp">
+      <Filter>UnitTests\Importers</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\assimp-4.1.0\test\unit\utColladaImportExport.cpp">
+      <Filter>UnitTests\Importers</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\assimp-4.1.0\test\unit\utCSMImportExport.cpp">
+      <Filter>UnitTests\Importers</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\assimp-4.1.0\test\unit\utB3DImportExport.cpp">
+      <Filter>UnitTests\Importers</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\assimp-4.1.0\test\unit\utMaterialSystem.cpp">
+      <Filter>UnitTests\Material</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\assimp-4.1.0\test\unit\utMatrix3x3.cpp">
+      <Filter>UnitTests\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\assimp-4.1.0\test\unit\utMatrix4x4.cpp">
+      <Filter>UnitTests\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\assimp-4.1.0\test\unit\utVector3.cpp">
+      <Filter>UnitTests\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\assimp-4.1.0\test\unit\utImproveCacheLocality.cpp">
+      <Filter>UnitTests\PostProcess</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\assimp-4.1.0\test\unit\utFixInfacingNormals.cpp">
+      <Filter>UnitTests\PostProcess</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\assimp-4.1.0\test\unit\utGenNormals.cpp">
+      <Filter>UnitTests\PostProcess</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\assimp-4.1.0\test\unit\utTriangulate.cpp">
+      <Filter>UnitTests\PostProcess</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\assimp-4.1.0\test\unit\utTextureTransform.cpp">
+      <Filter>UnitTests\PostProcess</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\assimp-4.1.0\test\unit\utRemoveRedundantMaterials.cpp">
+      <Filter>UnitTests\PostProcess</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\assimp-4.1.0\test\unit\utRemoveVCProcess.cpp">
+      <Filter>UnitTests\PostProcess</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\assimp-4.1.0\test\unit\utScaleProcess.cpp">
+      <Filter>UnitTests\PostProcess</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\assimp-4.1.0\test\unit\utJoinVertices.cpp">
+      <Filter>UnitTests\PostProcess</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\assimp-4.1.0\test\unit\utRemoveComments.cpp">
+      <Filter>UnitTests\PostProcess</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\assimp-4.1.0\test\unit\utRemoveComponent.cpp">
+      <Filter>UnitTests\PostProcess</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\assimp-4.1.0\test\unit\utVertexTriangleAdjacency.cpp">
+      <Filter>UnitTests\PostProcess</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\assimp-4.1.0\test\unit\utSplitLargeMeshes.cpp">
+      <Filter>UnitTests\PostProcess</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\assimp-4.1.0\test\unit\utFindDegenerates.cpp">
+      <Filter>UnitTests\PostProcess</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\assimp-4.1.0\test\unit\utFindInvalidData.cpp">
+      <Filter>UnitTests\PostProcess</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\assimp-4.1.0\test\unit\utLimitBoneWeights.cpp">
+      <Filter>UnitTests\PostProcess</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\assimp-4.1.0\test\unit\utPretransformVertices.cpp">
+      <Filter>UnitTests\PostProcess</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\assimp-4.1.0\test\unit\utScenePreprocessor.cpp">
+      <Filter>UnitTests\PostProcess</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\assimp-4.1.0\test\unit\utTargetAnimation.cpp">
+      <Filter>UnitTests\PostProcess</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\assimp-4.1.0\test\unit\utSortByPType.cpp">
+      <Filter>UnitTests\PostProcess</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\assimp-4.1.0\test\unit\utSceneCombiner.cpp">
+      <Filter>UnitTests\PostProcess</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\Users\matte\source\repos\OpenGL\Dependencies\assimp-4.1.0\test\unit\SceneDiffer.h">
+      <Filter>UnitTests\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\matte\source\repos\OpenGL\Dependencies\assimp-4.1.0\test\unit\UTLogStream.h">
+      <Filter>UnitTests\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\matte\source\repos\OpenGL\Dependencies\assimp-4.1.0\test\unit\TestIOSystem.h">
+      <Filter>UnitTests\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\matte\source\repos\OpenGL\Dependencies\assimp-4.1.0\test\unit\TestModelFactory.h">
+      <Filter>UnitTests\Common</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\matte\source\repos\OpenGL\Dependencies\assimp-4.1.0\test\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{EFC0D74F-C765-38FE-8F47-AF54A9795CF3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UnitTests">
+      <UniqueIdentifier>{C121F54C-F546-3A57-B338-8AF4C5BACC4C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UnitTests\Compiler">
+      <UniqueIdentifier>{FE6670BE-B2F2-3B9B-A295-CB7C8007F651}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UnitTests\Common">
+      <UniqueIdentifier>{0F1A73AC-1DE6-30BE-9D12-BFC5F326BA00}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UnitTests\Importers">
+      <UniqueIdentifier>{0A53CD5F-6EC5-338B-B709-3E060FBDA649}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UnitTests\Material">
+      <UniqueIdentifier>{8ED17695-3AC5-328C-9F2D-B941E69CAC4F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UnitTests\Math">
+      <UniqueIdentifier>{9FE3269A-54CF-37A5-B82B-A2F4F1539D40}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UnitTests\PostProcess">
+      <UniqueIdentifier>{E6B43549-EC72-354D-870E-D6147E25B0F2}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
