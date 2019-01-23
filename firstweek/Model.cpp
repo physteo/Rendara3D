@@ -1,11 +1,16 @@
 #include "Model.h"
 
-void Model::draw(float scale, const glm::vec3& position, const glm::vec3& radians, Shader& shader)
+void Model::draw(const glm::vec3& scale, const glm::vec3& position, const glm::vec3& radians, Shader& shader)
 {
 	for (size_t i = 0; i < m_meshes.size(); i++)
 	{
 		m_meshes[i].draw(scale, position, radians, shader);
 	}
+}
+
+void Model::draw(float scale, const glm::vec3& position, const glm::vec3& radians, Shader& shader)
+{
+	this->draw(glm::vec3{ scale }, position, radians, shader);
 }
 
 void Model::loadModel(const std::string path, std::vector<Texture>* loadedTextures)
@@ -19,7 +24,8 @@ void Model::loadModel(const std::string path, std::vector<Texture>* loadedTextur
 		return;
 	}
 
-	m_directory = path.substr(0, path.find_last_of('/'));
+	//m_directory = path.substr(0, path.find_last_of('/'));
+	m_path = path;
 
 	processNode(scene->mRootNode, scene, loadedTextures);
 }

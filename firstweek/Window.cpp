@@ -1,6 +1,7 @@
 
 #include "Window.h"
 
+Window::Window(std::string title, double width, double height) : Window{ title, width, height, Monitor::G_NOTSPECIFIED } {}
 
 Window::Window(std::string title, double width, double height, Monitor monitor)
 {
@@ -82,9 +83,9 @@ bool Window::isClosed() const
 	return glfwWindowShouldClose(m_window);
 }
 
-void Window::clearColorBufferBit(float v0, float v1, float v2, float v3) const
+void Window::clearColorBufferBit(float red, float green, float blue, float alpha) const
 {
-	GLCall(glClearColor(v0, v1, v2, v3));
+	GLCall(glClearColor(red, green, blue, alpha));
 	GLCall(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
 	//ste//GLCall(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT));
 }

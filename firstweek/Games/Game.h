@@ -11,8 +11,10 @@
 #include "../ShadowCubeMap.h"
 #include "../PerspectiveFrustrum.h"
 
-#include "GameComponent.h"
+#include "GameObject.h"
 #include "GameLevel.h"
+
+#include "./InstanceSet.h"
 
 #include<vector>
 
@@ -30,19 +32,9 @@ class Game
 public:
 	// Game state
 	GameState state;
-	GLboolean keys[1024];
 	GLuint width, height;
 
 	Game(GLuint widthIn, GLuint heightIn);
-	//~Game();
-
-	// initialization
-	void init();
-	
-	// game loop
-	//void render();
-	//void update(float dt);
-	//void processInput(float dt);
 
 	// execute
 	int execute();
@@ -53,8 +45,5 @@ private:
 
 	// textures
 	std::vector<Texture> loadedTextures;
-
-	// models
-	Model cube;
 
 };

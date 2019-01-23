@@ -15,6 +15,10 @@ enum Monitor
 	G_NOTSPECIFIED = -1
 };
 
+	//! Class for the window on which things will be rendered.
+	/*!
+		Creates a window for rendering stuff on the screen. Must be created before anything else. 
+	*/
 class Window
 {
 private:
@@ -28,12 +32,24 @@ private:
 	float m_lastFrameTime;
 
 public:
-	Window(std::string title, double width, double height, Monitor monitor);
+	/*!
+	Width and Height must be specified in pixels.
+	*/
+	Window(std::string title, double width /* in pixels */, double height);
+	/*!
+	Width and Height must be specified in pixels. The Monitor can be either G_PRIMARY or G_SECONDARY or G_NOTSPECIFIED. G_NOTSPECIFIED will take the default primary
+	monitor.
+	*/
+	Window(std::string title, double width /* in pixels */, double height, Monitor monitor);
 
-	void setViewPort(float width, float height) const;
+
+	//!< Checks whether the window was closed.
 	bool isClosed() const;
+	//!< Closes the window.
 	void close() const { glfwSetWindowShouldClose(m_window, true); }
-	void clearColorBufferBit(float v0, float v1, float v2, float v3) const;
+	void setViewPort(float width, float height) const;
+	//!< Set the "background color" of the currently binded buffer. Use numbers between 0 and 1 (not 0-255!).
+	void clearColorBufferBit(float red, float blue, float green, float alpha) const;
 	void swapBuffers() const;
 	void pollEvents() const;
 	void terminate() const;
@@ -43,9 +59,14 @@ public:
 	const GLFWwindow* getGLFWwindow() const;
 	GLFWwindow*		  getGLFWwindow();
 
+	//!< Gets the latest stored time (stored when using updateTime
 	float getLastTime() const;
+	//!< Gets the time it took to process the previous frame (in seconds). 
 	float getLastFrameTime() const;
+	//!< Gets the real time, measured from the start of the program (in seconds) 
 	float getCurrentTime() const;
+	//!< Updates the stored time (in seconds) with the real time.
 	void  updateTime();
+	//!< Update the time it took to process this frame (in seconds). To be used at the end of each frame.
 	void  updateLastFrameTime();
 };

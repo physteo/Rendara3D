@@ -52,34 +52,7 @@ void Material::fill(const Texture& diffuse, const Texture& specular, const Textu
 }
 
 
-//void Material::passUniforms(Shader& shader)
-//{
-//	shader.bind();
-//
-//	// TODO: optimize by removing the if statements
-//
-//
-//	/* pass diffuse */
-//		shader.setUniformValue("material.diffuse", 0);
-//		Texture::setActiveTexture(GL_TEXTURE0);
-//		m_diffuse.bind();
-//
-//	/* pass specular */
-//		shader.setUniformValue("material.specular", 1);
-//		Texture::setActiveTexture(GL_TEXTURE0 + 1);
-//		m_specular.bind();
-//
-//	/* pass normal */
-//		shader.setUniformValue("material.normal", 2);
-//		Texture::setActiveTexture(GL_TEXTURE0 + 2);
-//		m_normal.bind();
-//
-//
-//	/* pass shininess */
-//	shader.setUniformValue("material.shininess", m_shininess);
-//}
-
-void Material::passUniforms(Shader& shader)
+void Material::passUniforms(Shader& shader) const
 {
 	shader.bind();
 

@@ -65,7 +65,7 @@ void Mesh::fill(const std::vector<float>& positions, const std::vector<float>& n
 }
 
 
-void Mesh::draw(float scale, const glm::vec3& position, const glm::vec3& radians, Shader& shader)
+void Mesh::draw(const glm::vec3& scale, const glm::vec3& position, const glm::vec3& radians, Shader& shader)
 {
 	shader.bind();
 
@@ -74,20 +74,23 @@ void Mesh::draw(float scale, const glm::vec3& position, const glm::vec3& radians
 	model = glm::rotate(model, glm::radians(radians.z), glm::vec3{ 0.0f,0.0f,1.0f });
 	model = glm::rotate(model, glm::radians(radians.y), glm::vec3{ 0.0f,1.0f,0.0f });
 	model = glm::rotate(model, glm::radians(radians.x), glm::vec3{ 1.0f,0.0f,0.0f });
-	model = glm::scale(model, glm::vec3{ scale });
+	model = glm::scale(model, scale);
 	glm::mat3 normalMatrix = glm::inverse(glm::transpose(model));
 
 	shader.setUniformMatrix("model", model, false);
 	shader.setUniformMatrix("normalMat", normalMatrix, false);
 
-	m_material.passUniforms(shader);
+	passMaterialUniforms(shader);
 
 	m_vao.bind();
 	// draw call
 	GLCall(glDrawElements(GL_TRIANGLES, m_indices, GL_UNSIGNED_INT, 0));
-	//glDrawArrays(GL_TRIANGLES, 0, 36);
 	m_vao.unbind();
 	shader.unbind();
 
 }
 
+void Mesh::draw(float scale, const glm::vec3& position, const glm::vec3& radians, Shader& shader)
+{
+	this->draw(glm::vec3{ scale }, position, radians, shader);
+}

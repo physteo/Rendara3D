@@ -1,18 +1,76 @@
 
-#if PR_DEBUG == 1
-#define LOG(x) std::cout << x << std::endl;
-#else
-#define LOG(x)
+#include <iostream>
+
+
+#include "Window.h"
+#include "Camera.h"
+#include "Model.h"
+
+
+#if 0
+int main()
+{
+	// create window
+	Window window{ "Example", 1000, 1000 };
+
+	// create camera and projection
+	Camera camera{ glm::vec3{0.0f, 0.0f, 5.0f}, glm::vec3{0.0f, 0.0f, 0.0f}, glm::vec3{0.0f, 1.0f, 0.0f} };
+	glm::mat4 projection = glm::perspective(glm::radians(90.0f), (float)window.getWidth() / (float)window.getHeight(), 0.1f, 50.0f);
+	//glm::mat4 projection = glm::ortho(-5.0f, 5.0f, -5.0f, 5.0f, 1.0f, 10.0f);
+
+	// create a model
+	std::vector<Texture> loadedTextures;
+	Model box{"./res/model/container/container.obj", &loadedTextures};
+	Model paper{ "./res/model/container/container_cardboard.obj", &loadedTextures };
+	Model iron{ "./res/model/container/container_hard.obj", &loadedTextures };
+
+
+	Shader objectsShader;
+	objectsShader.generate("./res/shaders/objects_default.shader");
+
+
+	while (!window.isClosed())
+	{
+		// ******* first stuff to do
+		window.updateTime();
+		window.clearColorBufferBit(0.5f, 0.5, 0.5f, 1.0f);
+
+
+		// render stuff
+		objectsShader.bind();
+		objectsShader.setUniformMatrix("projection", projection, false);
+		objectsShader.setUniformMatrix("view", camera.getViewMatrix(), false);
+
+		objectsShader.setUniformValue("brightness", 2.0f);
+		box.draw(1.0f, glm::vec3{ 0.0f, -1.5f, 0.0f }, glm::vec3{ 0.0f, 15.0f * window.getCurrentTime(), 0.0f }, objectsShader);
+
+		objectsShader.bind();
+		objectsShader.setUniformValue("brightness", 1.0f);
+		iron.draw(1.0f, glm::vec3{ 0.0f, 0.0f, 0.0f }, glm::vec3{ 0.0f, - 50.0f + 15.0f * window.getCurrentTime(), 0.0f }, objectsShader);
+
+		objectsShader.bind();
+		objectsShader.setUniformValue("brightness", 0.75f);
+		paper.draw(1.0f, glm::vec3{ 0.0f, +1.5f, 0.0f }, glm::vec3{ 0.0f, -150.0f - 15.0f * window.getCurrentTime(), 0.0f }, objectsShader);
+
+
+		// game logic stuff
+
+		// ******* last stuff to do
+		window.swapBuffers();
+		window.pollEvents();
+		window.updateLastFrameTime();
+	}
+
+}
 #endif
 
 
+#if 1
 #include "Chapters/Chapter1_gettingstarted.h"
 #include "Chapters/Chapter2_lighting.h"
 #include "Chapters/Chapter4_shadows.h"
 #include "Chapters/Chapter_practice.h"
 #include "Games/Game.h"
-
-
 int main()
 {
 	//return chapter1();
@@ -22,10 +80,8 @@ int main()
 
 	Game breakout{ 1000, 1000 };
 	return breakout.execute();
-	
 }
-
-
+#endif
 
 #if 0
 int maina()

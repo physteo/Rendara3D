@@ -4,38 +4,24 @@
 
 Game::Game(GLuint widthIn, GLuint heightIn) :
 	loadedTextures{},
-	window{ "game", widthIn, heightIn, Monitor::G_NOTSPECIFIED }, 
-	cube{ "./res/model/cube/cube.obj", glm::vec3{0.0f,1.0f,1.0f}, &loadedTextures }
+	window{ "game", widthIn, heightIn, Monitor::G_NOTSPECIFIED }
 {
 	width = widthIn;
 	height = heightIn;
 	state = GAME_MENU;
-	init();
 }
 
-void Game::init()
-{
-
-	// set camera
-		// Perspective
-	//Camera camera{ glm::vec3{-3.0f, 3.0f, 3.0f}, glm::vec3{0.0f, 0.0f, 1.0f}, glm::vec3{0.0f, 1.0f, 0.0f} };
-	//glm::mat4 projection = glm::perspective(glm::radians(90.0f), width / height, 0.1f, 50.0f);
-		// Ortho
-
-}
 
 
 int Game::execute()
 {
 
-	std::vector<std::vector<int> > layout_0 = { {2,3,2,3,2,3,2,3,2,3,2,3},
-											  {3,2,3,2,3,2,3,2,3,2,3,2},
-											  {1,0,1,0,0,1,0,1,0,0,0,1} };
-	std::vector<std::vector<int> > layout_1 = { {2,3,2,3,2,3,2,3,2,3,2,3},
-											    {3,2,3,2,3,2,3,2,3,2,3,2},
-												{2,3,2,3,2,3,2,3,2,3,2,3},
-											    {1,0,1,0,0,1,0,1,0,0,0,1} };
+	// without instance example
+	std::vector<std::vector<int> > layout_0 = {{2,3,2,3,2,3,2,3,2,3,2,3}};
 
+	std::vector<std::vector<int> > layout_1 = { {2,3,2,3,2,3,2,3,2,3,2,3},
+											  {3,2,3,2,3,2,3,2,3,2,3,2},
+											  {1,1,1,0,1,1,0,1,1,0,1,1} };
 
 
 	std::vector<GameLevel> levels;
@@ -52,10 +38,12 @@ int Game::execute()
 		window.updateTime();
 		window.clearColorBufferBit(0.5f, 0.5f, 0.5f, 1.0f);
 
+
 		// ******* graphics, physics and game logic
+			// graphics
 		levels.at(level_id).render(window);
 		
-		// ******* game logic: commands, physics, etc
+			// game logic: commands, events
 		levels.at(level_id).update(window);
 		
 		// ******* advance levels
@@ -71,6 +59,8 @@ int Game::execute()
 				window.close();
 			}
 		}
+
+
 
 		// ******* last stuff to do
 		window.swapBuffers();

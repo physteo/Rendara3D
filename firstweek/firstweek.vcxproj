@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -130,8 +130,10 @@
     <ClCompile Include="Chapters\Chapter_practice.cpp" />
     <ClCompile Include="Games\Game.cpp" />
     <ClCompile Include="ErrorHandling.cpp" />
-    <ClCompile Include="Games\GameComponent.cpp" />
+    <ClCompile Include="Games\GameObject.cpp" />
     <ClCompile Include="Games\GameLevel.cpp" />
+    <ClCompile Include="Games\InstanceSet.cpp" />
+    <ClCompile Include="Games\ParticleSystem.cpp" />
     <ClCompile Include="ImageLoader.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Mesh.cpp" />
@@ -154,8 +156,11 @@
     <ClInclude Include="Chapters\Chapter_practice.h" />
     <ClInclude Include="Games\Game.h" />
     <ClInclude Include="ErrorHandling.h" />
-    <ClInclude Include="Games\GameComponent.h" />
+    <ClInclude Include="Games\GameObject.h" />
     <ClInclude Include="Games\GameLevel.h" />
+    <ClInclude Include="Games\InstanceSet.h" />
+    <ClInclude Include="Games\ParticleSystem.h" />
+    <ClInclude Include="Games\Transform.h" />
     <ClInclude Include="ImageLoader.h" />
     <ClInclude Include="inputs.h" />
     <ClInclude Include="Mesh.h" />
@@ -164,8 +169,10 @@
     <ClInclude Include="PerspectiveFrustrum.h" />
     <ClInclude Include="PointLight.h" />
     <ClInclude Include="Quad.h" />
-    <ClInclude Include="res\shaders\joey.fs" />
-    <ClInclude Include="res\shaders\objects_practice.shader" />
+    <ClInclude Include="res\shaders\objects_default.shader" />
+    <ClInclude Include="res\shaders\zzz_joey.fs" />
+    <ClInclude Include="ObjectPool.h" />
+    <ClInclude Include="res\shaders\objects_wlights.shader" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="ShadowCubeMap.h" />
     <ClInclude Include="ShadowMap2D.h" />
@@ -184,10 +191,14 @@
     <None Include="res\shaders\debugCubeDepth.shader" />
     <None Include="res\shaders\debugDepth.shader" />
     <None Include="res\shaders\hdr.shader" />
+    <None Include="res\shaders\instances_colored_quads.shader" />
+    <None Include="res\shaders\instances_cubeDepth.shader" />
+    <None Include="res\shaders\instances_depth.shader" />
     <None Include="res\shaders\joey\first.shader" />
     <None Include="res\shaders\joey\second.shader" />
-    <None Include="res\shaders\objects_shadows.shader" />
-    <None Include="res\shaders\depthShader.shader" />
+    <None Include="res\shaders\zzz_objects_shadows.shader" />
+    <None Include="res\shaders\depth.shader" />
+    <None Include="res\shaders\instances_objects_wlights.shader" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

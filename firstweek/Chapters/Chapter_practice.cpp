@@ -75,9 +75,9 @@ int chapter_practice()
 
 	/* shaders */
 	Shader shader; 
-	shader.generate( "./res/shaders/objects_practice.shader" );
+	shader.generate( "./res/shaders/objects_wlights.shader" );
 	Shader shadowShader; 
-	shadowShader.generate( "./res/shaders/depthShader.shader" );
+	shadowShader.generate( "./res/shaders/depth.shader" );
 	Shader debugDepth;
 	debugDepth.generate( "./res/shaders/debugDepth.shader" );
 	Shader cubeMapShader; 
