@@ -7,7 +7,7 @@
 #include "Model.h"
 
 
-#if 0
+#if 1
 int main()
 {
 	// create window
@@ -20,9 +20,9 @@ int main()
 
 	// create a model
 	std::vector<Texture> loadedTextures;
-	Model box{"./res/model/container/container.obj", &loadedTextures};
-	Model paper{ "./res/model/container/container_cardboard.obj", &loadedTextures };
-	Model iron{ "./res/model/container/container_hard.obj", &loadedTextures };
+	Model box{ "./res/model/cube/cube.obj", glm::vec3{1.0f, 0.0f,0.0f},&loadedTextures };
+	Model paper{ "./res/model/cube/cube.obj", glm::vec3{0.0f, 1.0f,0.0f},&loadedTextures };
+	Model iron{ "./res/model/cube/cube.obj", glm::vec3{0.0f, 0.0f,1.0f},&loadedTextures };
 
 
 	Shader objectsShader;
@@ -65,7 +65,7 @@ int main()
 #endif
 
 
-#if 1
+#if 0
 #include "Chapters/Chapter1_gettingstarted.h"
 #include "Chapters/Chapter2_lighting.h"
 #include "Chapters/Chapter4_shadows.h"

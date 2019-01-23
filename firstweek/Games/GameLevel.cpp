@@ -302,18 +302,17 @@ void GameLevel::update(Window& window)
 	newParticle.transform.scale = glm::vec3{ 0.2f * (rand() / (RAND_MAX + 1.0f)) };
 	newParticle.transform.rotation = glm::vec3{ 360.0f * rand() / (RAND_MAX + 1.0f) };
 	newParticle.tau = 2.0f;
-	newParticle.color = glm::vec4{0.0f, 0.0f, 0.0f, 1.0f};
-	coloredQuads.push_back(newParticle);
+	particles.push_back(newParticle);
 	// update time of all particles and kill old particles
 
-	for (size_t i = 0; i < coloredQuads.size(); i++)
+	for (size_t i = 0; i < particles.size(); i++)
 	{
-		Particle particle = coloredQuads.getElement(i);
+		Particle particle = particles.getElement(i);
 		particle.tau -= dt;
 		if (particle.tau <= 0.0f)
-			coloredQuads.deleteElement(i);
+			particles.deleteElement(i);
 		else
-			coloredQuads.setElement(i, particle);
+			particles.setElement(i, particle);
 	}
 
 
