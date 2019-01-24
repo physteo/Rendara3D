@@ -7,7 +7,7 @@
 #include "Model.h"
 
 
-#if 1
+#if 0
 int main()
 {
 	// create window
@@ -64,7 +64,7 @@ int main()
 }
 #endif
 
-#if 0
+#if 1
 int main()
 {
 	// create window

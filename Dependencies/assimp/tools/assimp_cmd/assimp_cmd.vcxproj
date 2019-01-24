@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -56,7 +56,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
     <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\Users\matte\source\repos\OpenGL\Dependencies\assimp\tools\assimp_cmd\Debug\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)Dependencies\assimp\tools\assimp_cmd\Debug\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">assimp_cmd.dir\Debug\</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">assimp</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.exe</TargetExt>
@@ -83,7 +83,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\Users\matte\source\repos\OpenGL\Dependencies\assimp-4.1.0\.;C:\Users\matte\source\repos\OpenGL\Dependencies\assimp-4.1.0\include;C:\Users\matte\source\repos\OpenGL\Dependencies\assimp;C:\Users\matte\source\repos\OpenGL\Dependencies\assimp\include;C:\Program Files (x86)\HDF_Group\HDF5\1.8.19\include;C:\Users\matte\source\repos\OpenGL\Dependencies\assimp-4.1.0\code;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\assimp-4.1.0\.;$(SolutionDir)Dependencies\assimp-4.1.0\include;$(SolutionDir)Dependencies\assimp;$(SolutionDir)Dependencies\assimp\include;$(SolutionDir)Dependencies\assimp-4.1.0\code;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>Debug/</AssemblerListingLocation>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <CompileAs>CompileAsCpp</CompileAs>
@@ -112,7 +112,8 @@
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <PreBuildEvent>
-      <Message></Message>
+      <Message>
+      </Message>
       <Command>setlocal
 "C:\Program Files (x86)\CMake\bin\cmake.exe" -E copy_if_different C:/Users/matte/source/repos/OpenGL/Dependencies/assimp/code/Debug/assimp-vc140-mt.dll C:/Users/matte/source/repos/OpenGL/Dependencies/assimp/tools/assimp_cmd/Debug
 if %errorlevel% neq 0 goto :cmEnd
@@ -132,7 +133,8 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <ImportLibrary>C:/Users/matte/source/repos/OpenGL/Dependencies/assimp/tools/assimp_cmd/Debug/assimp.lib</ImportLibrary>
       <ProgramDataBaseFile>C:/Users/matte/source/repos/OpenGL/Dependencies/assimp/tools/assimp_cmd/Debug/assimp.pdb</ProgramDataBaseFile>
       <SubSystem>Console</SubSystem>
-      <Version></Version>
+      <Version>
+      </Version>
     </Link>
     <ProjectReference>
       <LinkLibraryDependencies>false</LinkLibraryDependencies>
@@ -153,7 +155,8 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;WIN32_LEAN_AND_MEAN;OPENDDL_NO_USE_CPP11;ASSIMP_BUILD_NO_OWN_ZLIB;ASSIMP_BUILD_NO_C4D_IMPORTER;CMAKE_INTDIR="Release";%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
-      <DebugInformationFormat></DebugInformationFormat>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;WIN32_LEAN_AND_MEAN;OPENDDL_NO_USE_CPP11;ASSIMP_BUILD_NO_OWN_ZLIB;ASSIMP_BUILD_NO_C4D_IMPORTER;CMAKE_INTDIR=\"Release\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -168,7 +171,8 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <PreBuildEvent>
-      <Message></Message>
+      <Message>
+      </Message>
       <Command>setlocal
 "C:\Program Files (x86)\CMake\bin\cmake.exe" -E copy_if_different C:/Users/matte/source/repos/OpenGL/Dependencies/assimp/code/Release/assimp-vc140-mt.dll C:/Users/matte/source/repos/OpenGL/Dependencies/assimp/tools/assimp_cmd/Release
 if %errorlevel% neq 0 goto :cmEnd
@@ -188,7 +192,8 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <ImportLibrary>C:/Users/matte/source/repos/OpenGL/Dependencies/assimp/tools/assimp_cmd/Release/assimp.lib</ImportLibrary>
       <ProgramDataBaseFile>C:/Users/matte/source/repos/OpenGL/Dependencies/assimp/tools/assimp_cmd/Release/assimp.pdb</ProgramDataBaseFile>
       <SubSystem>Console</SubSystem>
-      <Version></Version>
+      <Version>
+      </Version>
     </Link>
     <ProjectReference>
       <LinkLibraryDependencies>false</LinkLibraryDependencies>
@@ -209,7 +214,8 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;WIN32_LEAN_AND_MEAN;OPENDDL_NO_USE_CPP11;ASSIMP_BUILD_NO_OWN_ZLIB;ASSIMP_BUILD_NO_C4D_IMPORTER;CMAKE_INTDIR="MinSizeRel";%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
-      <DebugInformationFormat></DebugInformationFormat>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;WIN32_LEAN_AND_MEAN;OPENDDL_NO_USE_CPP11;ASSIMP_BUILD_NO_OWN_ZLIB;ASSIMP_BUILD_NO_C4D_IMPORTER;CMAKE_INTDIR=\"MinSizeRel\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -224,7 +230,8 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <PreBuildEvent>
-      <Message></Message>
+      <Message>
+      </Message>
       <Command>setlocal
 "C:\Program Files (x86)\CMake\bin\cmake.exe" -E copy_if_different C:/Users/matte/source/repos/OpenGL/Dependencies/assimp/code/MinSizeRel/assimp-vc140-mt.dll C:/Users/matte/source/repos/OpenGL/Dependencies/assimp/tools/assimp_cmd/MinSizeRel
 if %errorlevel% neq 0 goto :cmEnd
@@ -244,7 +251,8 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <ImportLibrary>C:/Users/matte/source/repos/OpenGL/Dependencies/assimp/tools/assimp_cmd/MinSizeRel/assimp.lib</ImportLibrary>
       <ProgramDataBaseFile>C:/Users/matte/source/repos/OpenGL/Dependencies/assimp/tools/assimp_cmd/MinSizeRel/assimp.pdb</ProgramDataBaseFile>
       <SubSystem>Console</SubSystem>
-      <Version></Version>
+      <Version>
+      </Version>
     </Link>
     <ProjectReference>
       <LinkLibraryDependencies>false</LinkLibraryDependencies>
@@ -280,7 +288,8 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <PreBuildEvent>
-      <Message></Message>
+      <Message>
+      </Message>
       <Command>setlocal
 "C:\Program Files (x86)\CMake\bin\cmake.exe" -E copy_if_different C:/Users/matte/source/repos/OpenGL/Dependencies/assimp/code/RelWithDebInfo/assimp-vc140-mt.dll C:/Users/matte/source/repos/OpenGL/Dependencies/assimp/tools/assimp_cmd/RelWithDebInfo
 if %errorlevel% neq 0 goto :cmEnd
@@ -300,7 +309,8 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <ImportLibrary>C:/Users/matte/source/repos/OpenGL/Dependencies/assimp/tools/assimp_cmd/RelWithDebInfo/assimp.lib</ImportLibrary>
       <ProgramDataBaseFile>C:/Users/matte/source/repos/OpenGL/Dependencies/assimp/tools/assimp_cmd/RelWithDebInfo/assimp.pdb</ProgramDataBaseFile>
       <SubSystem>Console</SubSystem>
-      <Version></Version>
+      <Version>
+      </Version>
     </Link>
     <ProjectReference>
       <LinkLibraryDependencies>false</LinkLibraryDependencies>
@@ -363,15 +373,15 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\assimp-4.1.0\tools\assimp_cmd\assimp_cmd.rc"  />
-    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\assimp-4.1.0\tools\assimp_cmd\CompareDump.cpp"  />
-    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\assimp-4.1.0\tools\assimp_cmd\ImageExtractor.cpp"  />
-    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\assimp-4.1.0\tools\assimp_cmd\Main.cpp"  />
+    <ResourceCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\assimp-4.1.0\tools\assimp_cmd\assimp_cmd.rc" />
+    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\assimp-4.1.0\tools\assimp_cmd\CompareDump.cpp" />
+    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\assimp-4.1.0\tools\assimp_cmd\ImageExtractor.cpp" />
+    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\assimp-4.1.0\tools\assimp_cmd\Main.cpp" />
     <ClInclude Include="C:\Users\matte\source\repos\OpenGL\Dependencies\assimp-4.1.0\tools\assimp_cmd\Main.h" />
     <ClInclude Include="C:\Users\matte\source\repos\OpenGL\Dependencies\assimp-4.1.0\tools\assimp_cmd\resource.h" />
-    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\assimp-4.1.0\tools\assimp_cmd\WriteDumb.cpp"  />
-    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\assimp-4.1.0\tools\assimp_cmd\Info.cpp"  />
-    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\assimp-4.1.0\tools\assimp_cmd\Export.cpp"  />
+    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\assimp-4.1.0\tools\assimp_cmd\WriteDumb.cpp" />
+    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\assimp-4.1.0\tools\assimp_cmd\Info.cpp" />
+    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\assimp-4.1.0\tools\assimp_cmd\Export.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="C:\Users\matte\source\repos\OpenGL\Dependencies\assimp\ZERO_CHECK.vcxproj">
