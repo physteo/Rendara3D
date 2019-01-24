@@ -172,7 +172,7 @@ Texture Model::loadMaterialTexture(aiMaterial* mat, aiTextureType type, Format i
 			std::sregex_token_iterator()
 		);
 
-		fullPath = ".\\res\\" + out.at(1);
+		fullPath = (out.size() == 2) ? ".\\res\\" + out.at(1) : fullPath;
 
 		// if texture does not already exist, generate it
 		bool alreadyLoaded = false;
