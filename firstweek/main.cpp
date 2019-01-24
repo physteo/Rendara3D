@@ -20,9 +20,9 @@ int main()
 
 	// create a model
 	std::vector<Texture> loadedTextures;
-	Model box{ "./res/model/cube/cube.obj", glm::vec3{1.0f, 0.0f,0.0f},&loadedTextures };
-	Model paper{ "./res/model/cube/cube.obj", glm::vec3{0.0f, 1.0f,0.0f},&loadedTextures };
-	Model iron{ "./res/model/cube/cube.obj", glm::vec3{0.0f, 0.0f,1.0f},&loadedTextures };
+	Model box{ "./res/model/parquet/parquet.obj", glm::vec3{1.0f, 0.0f,0.0f},&loadedTextures };
+	Model paper{ "./res/model/container/container_cardboard.obj", glm::vec3{0.0f, 1.0f,0.0f},&loadedTextures };
+	Model iron{ "./res/model/earth/earth.obj", glm::vec3{0.0f, 0.0f,1.0f},&loadedTextures };
 
 
 	Shader objectsShader;

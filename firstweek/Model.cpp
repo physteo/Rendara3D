@@ -162,7 +162,17 @@ Texture Model::loadMaterialTexture(aiMaterial* mat, aiTextureType type, Format i
 		aiString texturePath;
 		mat->GetTexture(type, 0, &texturePath);
 		//std::string fullPath = m_directory + "/" + std::string(texturePath.C_Str());
+		//std::string fullPath = std::string(texturePath.C_Str());
 		std::string fullPath = std::string(texturePath.C_Str());
+
+		std::regex regex("\\\\res\\\\");
+
+		std::vector<std::string> out(
+			std::sregex_token_iterator(fullPath.begin(), fullPath.end(), regex, -1),
+			std::sregex_token_iterator()
+		);
+
+		fullPath = ".\\res\\" + out.at(1);
 
 		// if texture does not already exist, generate it
 		bool alreadyLoaded = false;

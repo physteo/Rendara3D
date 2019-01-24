@@ -10,5 +10,5 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.000000
 d 1.000000
 illum 2
-map_Kd .\res\textures\iron_diffuse.jpg
-map_Ks .\\res\\textures\\iron_diffuse.jpg
+map_Kd C:\Users\matte\source\repos\OpenGL\firstweek\res\textures\iron_diffuse.jpg
+map_Ks C:\\Users\\matte\\source\\repos\\OpenGL\\firstweek\\res\\textures\\iron_diffuse.jpg

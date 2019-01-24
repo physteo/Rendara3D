@@ -1,7 +1,7 @@
-# Blender MTL File: 'container_hard.blend'
+# Blender MTL File: 'earth.blend'
 # Material Count: 1
 
-newmtl Material
+newmtl Material.001
 Ns 96.078431
 Ka 1.000000 1.000000 1.000000
 Kd 0.640000 0.640000 0.640000
@@ -10,5 +10,4 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.000000
 d 1.000000
 illum 2
-map_Kd .\res\textures\iron_diffuse.jpg
-map_Ks .\\res\\textures\\iron_diffuse.jpg
+map_Kd C:\Users\matte\source\repos\OpenGL\firstweek\res\textures\earth.jpg
