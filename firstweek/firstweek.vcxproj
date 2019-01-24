@@ -196,6 +196,7 @@
     <None Include="res\shaders\instances_depth.shader" />
     <None Include="res\shaders\joey\first.shader" />
     <None Include="res\shaders\joey\second.shader" />
+    <None Include="res\shaders\quads_with_alpha.shader" />
     <None Include="res\shaders\zzz_objects_shadows.shader" />
     <None Include="res\shaders\depth.shader" />
     <None Include="res\shaders\instances_objects_wlights.shader" />

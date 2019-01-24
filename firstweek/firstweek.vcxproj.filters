@@ -195,5 +195,6 @@
     <None Include="res\shaders\instances_depth.shader" />
     <None Include="res\shaders\depth.shader" />
     <None Include="res\shaders\instances_colored_quads.shader" />
+    <None Include="res\shaders\quads_with_alpha.shader" />
   </ItemGroup>
 </Project>

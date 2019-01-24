@@ -21,8 +21,8 @@ int main()
 	// create a model
 	std::vector<Texture> loadedTextures;
 	Model box{ "./res/model/cube/cube.obj", glm::vec3{1.0f, 0.0f,0.0f},&loadedTextures };
-	Model paper{ "./res/model/container/container_cardboard.obj", glm::vec3{0.0f, 1.0f,0.0f},&loadedTextures };
-	Model iron{ "./res/model/earth/earth.obj", glm::vec3{0.0f, 0.0f,1.0f},&loadedTextures };
+	Model paper{ "./res/model/cube/cube.obj", glm::vec3{0.0f, 1.0f,0.0f},&loadedTextures };
+	Model iron{ "./res/model/cube/cube.obj", glm::vec3{0.0f, 0.0f,1.0f},&loadedTextures };
 
 
 	Shader objectsShader;
@@ -64,6 +64,73 @@ int main()
 }
 #endif
 
+#if 0
+int main()
+{
+	// create window
+	Window window{ "Example", 1000, 1000 };
+
+	// create camera and projection
+	Camera camera{ glm::vec3{0.0f, 0.0f, 5.0f}, glm::vec3{0.0f, 0.0f, 0.0f}, glm::vec3{0.0f, 1.0f, 0.0f} };
+	glm::mat4 projection = glm::perspective(glm::radians(90.0f), (float)window.getWidth() / (float)window.getHeight(), 0.1f, 50.0f);
+	//glm::mat4 projection = glm::ortho(-5.0f, 5.0f, -5.0f, 5.0f, 1.0f, 10.0f);
+
+	// create a model
+	std::vector<Texture> loadedTextures;
+	Model man{ "./res/model/quad/quad_walking_man.obj", &loadedTextures };
+	glm::vec3 man_position = glm::vec3{ 0.0f, 0.0f, 0.0f };
+
+	Shader objectsShader;
+	objectsShader.generate("./res/shaders/objects_default.shader");
+
+	Shader quads_with_alpha_shader;
+	quads_with_alpha_shader.generate("./res/shaders/quads_with_alpha.shader");
+
+
+	while (!window.isClosed())
+	{
+		// ******* first stuff to do
+		window.updateTime();
+		window.clearColorBufferBit(0.5f, 0.5, 0.5f, 1.0f);
+
+		float t = window.getCurrentTime();
+		float dt = window.getLastFrameTime();
+		// render stuff
+
+		quads_with_alpha_shader.bind();
+		quads_with_alpha_shader.setUniformMatrix("projection", projection, false);
+		quads_with_alpha_shader.setUniformMatrix("view", camera.getViewMatrix(), false);
+		quads_with_alpha_shader.setUniformValue("brightness", 1.0f);
+
+		if (isKeyPressed(GLFW_KEY_LEFT, window.getGLFWwindow()))
+		{
+			glm::vec3 toAdd = -glm::vec3{ 2.0 * dt ,0.0f,0.0f };
+			man_position += toAdd;
+			quads_with_alpha_shader.setUniformValue("animation", 1);
+			quads_with_alpha_shader.setUniformValue("t", (int)(t / 0.25f) % 4);
+		}
+		if (isKeyPressed(GLFW_KEY_RIGHT, window.getGLFWwindow()))
+		{
+			glm::vec3 toAdd = glm::vec3{ 2.0 * dt,0.0f,0.0f };
+			man_position += toAdd;
+			quads_with_alpha_shader.setUniformValue("animation", 0);
+			quads_with_alpha_shader.setUniformValue("t", (int)(t / 0.25f) % 4);
+		}
+
+		man.draw(1.0f, man_position, glm::vec3{ 90.0f, 0.0f * window.getCurrentTime(), 0.0f }, quads_with_alpha_shader);
+
+
+
+		// game logic stuff
+
+		// ******* last stuff to do
+		window.swapBuffers();
+		window.pollEvents();
+		window.updateLastFrameTime();
+	}
+
+}
+#endif
 
 #if 0
 #include "Chapters/Chapter1_gettingstarted.h"
