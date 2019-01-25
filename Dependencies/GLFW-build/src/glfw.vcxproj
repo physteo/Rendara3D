@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -56,7 +56,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
     <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\Users\matte\source\repos\OpenGL\Dependencies\GLFW-build\src\Debug\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)Dependencies\GLFW-build\src\Debug\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">glfw.dir\Debug\</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">glfw3</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.lib</TargetExt>
@@ -75,7 +75,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\Users\matte\source\repos\OpenGL\Dependencies\glfw-3.2.1\include;C:\Users\matte\source\repos\OpenGL\Dependencies\glfw-3.2.1\src;C:\Users\matte\source\repos\OpenGL\Dependencies\GLFW-build\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\glfw-3.2.1\include;$(SolutionDir)Dependencies\glfw-3.2.1\src;$(SolutionDir)Dependencies\GLFW-build\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>Debug/</AssemblerListingLocation>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <CompileAs>CompileAsC</CompileAs>
@@ -120,7 +120,8 @@
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_GLFW_USE_CONFIG_H;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR="Release";%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
-      <DebugInformationFormat></DebugInformationFormat>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_GLFW_USE_CONFIG_H;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR=\"Release\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -152,7 +153,8 @@
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_GLFW_USE_CONFIG_H;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR="MinSizeRel";%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
-      <DebugInformationFormat></DebugInformationFormat>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_GLFW_USE_CONFIG_H;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR=\"MinSizeRel\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -259,20 +261,20 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\glfw-3.2.1\src\context.c"  />
-    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\glfw-3.2.1\src\init.c"  />
-    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\glfw-3.2.1\src\input.c"  />
-    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\glfw-3.2.1\src\monitor.c"  />
-    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\glfw-3.2.1\src\vulkan.c"  />
-    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\glfw-3.2.1\src\window.c"  />
-    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\glfw-3.2.1\src\win32_init.c"  />
-    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\glfw-3.2.1\src\win32_joystick.c"  />
-    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\glfw-3.2.1\src\win32_monitor.c"  />
-    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\glfw-3.2.1\src\win32_time.c"  />
-    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\glfw-3.2.1\src\win32_tls.c"  />
-    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\glfw-3.2.1\src\win32_window.c"  />
-    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\glfw-3.2.1\src\wgl_context.c"  />
-    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\glfw-3.2.1\src\egl_context.c"  />
+    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\glfw-3.2.1\src\context.c" />
+    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\glfw-3.2.1\src\init.c" />
+    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\glfw-3.2.1\src\input.c" />
+    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\glfw-3.2.1\src\monitor.c" />
+    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\glfw-3.2.1\src\vulkan.c" />
+    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\glfw-3.2.1\src\window.c" />
+    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\glfw-3.2.1\src\win32_init.c" />
+    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\glfw-3.2.1\src\win32_joystick.c" />
+    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\glfw-3.2.1\src\win32_monitor.c" />
+    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\glfw-3.2.1\src\win32_time.c" />
+    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\glfw-3.2.1\src\win32_tls.c" />
+    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\glfw-3.2.1\src\win32_window.c" />
+    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\glfw-3.2.1\src\wgl_context.c" />
+    <ClCompile Include="C:\Users\matte\source\repos\OpenGL\Dependencies\glfw-3.2.1\src\egl_context.c" />
     <ClInclude Include="C:\Users\matte\source\repos\OpenGL\Dependencies\glfw-3.2.1\src\internal.h" />
     <ClInclude Include="C:\Users\matte\source\repos\OpenGL\Dependencies\GLFW-build\src\glfw_config.h" />
     <ClInclude Include="C:\Users\matte\source\repos\OpenGL\Dependencies\glfw-3.2.1\include\GLFW\glfw3.h" />

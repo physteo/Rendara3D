@@ -298,21 +298,23 @@ void GameLevel::update(Window& window)
 
 	// manage particles
 	Particle newParticle;
-	newParticle.transform.position = ball.transform.position + glm::vec3{ 0.33f * (rand() / (RAND_MAX + 1.0f)) };
+	newParticle.transform.position = ball.transform.position + glm::vec3{ 0.2f * (rand() / (RAND_MAX + 1.0f)) };
 	newParticle.transform.scale = glm::vec3{ 0.2f * (rand() / (RAND_MAX + 1.0f)) };
-	newParticle.transform.rotation = glm::vec3{ 360.0f * rand() / (RAND_MAX + 1.0f) };
-	newParticle.tau = 2.0f;
-	particles.push_back(newParticle);
+	newParticle.transform.rotation = glm::vec3{ 0.0f, 360.0f * rand() / (RAND_MAX + 1.0f), 0.0f };//glm::vec3{ 360.0f * rand() / (RAND_MAX + 1.0f) };
+	float random_green = 0.5 * (rand()) / (RAND_MAX + 1.0);
+	newParticle.color = glm::vec4{1.0f, random_green, random_green / 5.0f, 1.0f};
+	newParticle.tau = 0.25f;
+	coloredQuads.push_back(newParticle);
 	// update time of all particles and kill old particles
 
-	for (size_t i = 0; i < particles.size(); i++)
+	for (size_t i = 0; i < coloredQuads.size(); i++)
 	{
-		Particle particle = particles.getElement(i);
+		Particle particle = coloredQuads.getElement(i);
 		particle.tau -= dt;
 		if (particle.tau <= 0.0f)
-			particles.deleteElement(i);
+			coloredQuads.deleteElement(i);
 		else
-			particles.setElement(i, particle);
+			coloredQuads.setElement(i, particle);
 	}
 
 

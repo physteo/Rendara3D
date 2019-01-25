@@ -54,7 +54,7 @@ public:
 
 	// particles
 	InstanceSet<Particle> particles;
-	InstanceSet<Particle> coloredQuads;
+	InstanceSetQuads<Particle> coloredQuads;
 
 
 	GameObject background;

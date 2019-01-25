@@ -271,6 +271,6 @@ private:
 
 
 		m_modelMatrices.at(i) = modelMatrix;
-		m_colors = m_objects.at(i).color;
+		m_colors.at(i) = m_objects.at(i).color;
 	}
 };

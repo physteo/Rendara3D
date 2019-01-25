@@ -2,12 +2,14 @@
 #include <iostream>
 
 
-#include "Window.h"
-#include "Camera.h"
-#include "Model.h"
+
 
 
 #if 0
+
+#include "Window.h"
+#include "Camera.h"
+#include "Model.h"
 int main()
 {
 	// create window
@@ -64,9 +66,18 @@ int main()
 }
 #endif
 
-#if 1
+#if 0
+
+#include <irrKlang.h>
+using namespace irrklang;
+
+
 int main()
 {
+	//ISoundEngine *SoundEngine = createIrrKlangDevice();
+	//SoundEngine->play2D("./res/sounds/bleep.mp3", GL_TRUE);
+
+
 	// create window
 	Window window{ "Example", 1000, 1000 };
 
@@ -132,7 +143,7 @@ int main()
 }
 #endif
 
-#if 0
+#if 1
 #include "Chapters/Chapter1_gettingstarted.h"
 #include "Chapters/Chapter2_lighting.h"
 #include "Chapters/Chapter4_shadows.h"
