@@ -210,9 +210,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <CustomBuild Include="C:\Users\matte\source\repos\OpenGL\Dependencies\assimp-4.1.0\contrib\irrXML\CMakeLists.txt">
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Building Custom Rule C:/Users/matte/source/repos/OpenGL/Dependencies/assimp-4.1.0/contrib/irrXML/CMakeLists.txt</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Building Custom Rule $(SolutionDir)Dependencies/assimp-4.1.0/contrib/irrXML/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">setlocal
-"C:\Program Files (x86)\CMake\bin\cmake.exe" -HC:/Users/matte/source/repos/OpenGL/Dependencies/assimp-4.1.0 -BC:/Users/matte/source/repos/OpenGL/Dependencies/assimp --check-stamp-file C:/Users/matte/source/repos/OpenGL/Dependencies/assimp/contrib/irrXML/CMakeFiles/generate.stamp
+"C:\Program Files (x86)\CMake\bin\cmake.exe" -H$(SolutionDir)Dependencies/assimp-4.1.0 -B$(SolutionDir)Dependencies/assimp --check-stamp-file $(SolutionDir)Dependencies/assimp/contrib/irrXML/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -220,8 +220,8 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:/Users/matte/source/repos/OpenGL/Dependencies/assimp-4.1.0/contrib/irrXML/CMakeLists.txt;C:\Users\matte\source\repos\OpenGL\Dependencies\assimp-4.1.0\contrib\irrXML\CMakeLists.txt;C:\Users\matte\source\repos\OpenGL\Dependencies\assimp-4.1.0\contrib\irrXML\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\Users\matte\source\repos\OpenGL\Dependencies\assimp\contrib\irrXML\CMakeFiles\generate.stamp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)Dependencies/assimp-4.1.0/contrib/irrXML/CMakeLists.txt;$(SolutionDir)Dependencies\assimp-4.1.0\contrib\irrXML\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)Dependencies\assimp\contrib\irrXML\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</LinkObjects>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Building Custom Rule C:/Users/matte/source/repos/OpenGL/Dependencies/assimp-4.1.0/contrib/irrXML/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">setlocal
