@@ -121,6 +121,14 @@ void Level::load(const std::vector<std::vector<int> >& layout)
 		t.scale = glm::vec3{ 1.0f };
 		tiles.push_back(t);
 	}
+	for (size_t i = 0; i < 10; i++)
+	{
+		Transform t;
+		t.position = glm::vec3{ -5.0f + (float)i, -1.0f, 0.01f };
+		t.rotation = glm::vec3{ 90.0f, 0.0f, 0.0f };
+		t.scale = glm::vec3{ 1.0f };
+		grassTiles.push_back(t);
+	}
 
 	particles.setModel(&ironBrick);
 	coloredQuads.setModel(&quad);
@@ -172,6 +180,10 @@ void Level::load(const std::vector<std::vector<int> >& layout)
 
 	groundWithGrassTexture.generate("./res/textures/outside/ground_gras.png", Format::sRGBA);
 	groundWithGrassMaterial.fill(groundWithGrassTexture, defaultSpecularMap, defaultNormalMap, 256.0f);
+
+	grassTexture.generate("./res/textures/outside/ground_gras.png", Format::sRGBA);
+	grassMaterial.fill(groundWithGrassTexture, defaultSpecularMap, defaultNormalMap, 256.0f);
+
 
 }
 
@@ -327,6 +339,9 @@ void Level::render(Window& window)
 
 	for(size_t i = 0; i < tiles.size(); i++)
 		groundMesh.draw(1.0f, tiles.at(i).position, tiles.at(i).rotation, defaultQuadShader, groundWithGrassMaterial);
+
+	for (size_t i = 0; i < grassTiles.size(); i++)
+		groundMesh.draw(1.0f, grassTiles.at(i).position, grassTiles.at(i).rotation, defaultQuadShader, groundWithGrassMaterial);
 
 	for (size_t i = 0; i < enemies.size(); i++)
 		groundMesh.draw(1.0f, enemies.at(i).transform.position, enemies.at(i).transform.rotation, defaultQuadShader, groundWithGrassMaterial);

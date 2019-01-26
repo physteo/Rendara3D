@@ -82,6 +82,8 @@ public:
 	GameObject outsideBackground;
 	
 	std::vector<Transform> tiles;
+	std::vector<Transform> grassTiles;
+
 	std::vector<home::Enemy> enemies;
 
 	HomePlayer player;
@@ -105,8 +107,11 @@ public:
 
 
 	Mesh     groundMesh;
+	
 	Texture  groundWithGrassTexture;
 	Material groundWithGrassMaterial;
+	Texture  grassTexture;
+	Material grassMaterial;
 
 	int rows;
 	int columns;
