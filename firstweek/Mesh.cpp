@@ -64,8 +64,7 @@ void Mesh::fill(const std::vector<float>& positions, const std::vector<float>& n
 	m_material = material;
 }
 
-
-void Mesh::draw(const glm::vec3& scale, const glm::vec3& position, const glm::vec3& radians, Shader& shader)
+void Mesh::actualDraw(const glm::vec3& scale, const glm::vec3& position, const glm::vec3& radians, Shader& shader)
 {
 	shader.bind();
 
@@ -80,17 +79,45 @@ void Mesh::draw(const glm::vec3& scale, const glm::vec3& position, const glm::ve
 	shader.setUniformMatrix("model", model, false);
 	shader.setUniformMatrix("normalMat", normalMatrix, false);
 
-	passMaterialUniforms(shader);
 
 	m_vao.bind();
 	// draw call
 	GLCall(glDrawElements(GL_TRIANGLES, m_indices, GL_UNSIGNED_INT, 0));
 	m_vao.unbind();
 	shader.unbind();
+}
 
+void Mesh::draw(const glm::vec3& scale, const glm::vec3& position, const glm::vec3& radians, Shader& shader)
+{
+	passMaterialUniforms(shader);
+	actualDraw(scale, position, radians, shader);
+}
+
+
+void Mesh::draw(const glm::vec3& scale, const glm::vec3& position, const glm::vec3& radians, Shader& shader, Material& material)
+{
+	passMaterialUniforms(shader, material);
+	actualDraw(scale, position, radians, shader);
 }
 
 void Mesh::draw(float scale, const glm::vec3& position, const glm::vec3& radians, Shader& shader)
 {
 	this->draw(glm::vec3{ scale }, position, radians, shader);
+}
+
+void Mesh::draw(float scale, const glm::vec3& position, const glm::vec3& radians, Shader& shader, Material& material)
+{
+	this->draw(glm::vec3{ scale }, position, radians, shader, material);
+}
+
+
+void Mesh::passMaterialUniforms(Shader& shader) const
+{
+	passMaterialUniforms(shader, this->m_material);
+}
+
+void Mesh::passMaterialUniforms(Shader& shader, Material material) const
+{
+	shader.bind();
+	material.passUniforms(shader);
 }

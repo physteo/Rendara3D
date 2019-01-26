@@ -55,14 +55,14 @@ public:
 	void bindVao() const { m_vao.bind(); }
 	void unbindVao() const { m_vao.unbind(); }
 
-	void passMaterialUniforms(Shader& shader) const
-	{
-		shader.bind();
-		m_material.passUniforms(shader);
-	}
+	void passMaterialUniforms(Shader& shader) const;
+	void passMaterialUniforms(Shader& shader, Material material) const;
 
-	void draw(const glm::vec3& scale, const glm::vec3& position, const glm::vec3& radians, Shader& shader);
+
 	void draw(float scale, const glm::vec3& position, const glm::vec3& radians, Shader& shader);
+	void draw(float scale, const glm::vec3& position, const glm::vec3& radians, Shader& shader, Material& material);
+	void draw(const glm::vec3& scale, const glm::vec3& position, const glm::vec3& radians, Shader& shader);
+	void draw(const glm::vec3& scale, const glm::vec3& position, const glm::vec3& radians, Shader& shader, Material& material);
 
 	unsigned int getIndices() const { return m_indices; }
 
@@ -71,4 +71,7 @@ private:
 	Material     m_material;
 
 	unsigned int m_indices;
+
+	void actualDraw(const glm::vec3& scale, const glm::vec3& position, const glm::vec3& radians, Shader& shader);
+
 };

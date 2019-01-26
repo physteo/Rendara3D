@@ -24,6 +24,10 @@ public:
 	void draw(const glm::vec3& scale, const glm::vec3& position, const glm::vec3& radians, Shader& shader);
 	void draw(float scale, const glm::vec3& position, const glm::vec3& radians, Shader& shader);
 
+	void draw(const glm::vec3& scale, const glm::vec3& position, const glm::vec3& radians, Shader& shader, Material& material);
+	void draw(float scale, const glm::vec3& position, const glm::vec3& radians, Shader& shader, Material& material);
+
+
 	const std::vector<Mesh>* getMeshes() const { return &m_meshes; }
 	const std::string& getPath() const { return m_path; }
 

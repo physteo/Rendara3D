@@ -61,7 +61,9 @@ Window::Window(std::string title, double width, double height, Monitor monitor)
 
 	glEnable(GL_CULL_FACE);
 	//glFrontFace(GL_CCW);
-	//glEnable(GL_FRAMEBUFFER_SRGB);
+
+	// disable this to have HDR, and in the hdr shader abilitate the calculations for the hdr
+	glEnable(GL_FRAMEBUFFER_SRGB);
 
 	// set the viewport
 	setViewPort(m_width, m_height);

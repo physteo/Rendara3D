@@ -53,29 +53,42 @@ public:
 	{
 		float speedMultiplier = speed * delta;
 
-		//if (isKeyPressed(GLFW_KEY_UP, window.getGLFWwindow()))
-		//{
-		//	glm::vec3 toAdd = glm::vec3{-1.0f,0.0f,0.0f} *speedMultiplier;
-		//	this->position += toAdd;
-		//}
-		//
-		//if (isKeyPressed(GLFW_KEY_DOWN, window.getGLFWwindow()))
-		//{
-		//	glm::vec3 toAdd = glm::vec3{1.0f,0.0f,0.0f } * speedMultiplier;
-		//	this->position += toAdd;
-		//}
+		if (isKeyPressed(GLFW_KEY_O, window.getGLFWwindow()))
+		{
+			glm::vec3 toAdd = glm::vec3{ 0.0f,1.0f,1.0f } *speedMultiplier;
+			this->transform.position += toAdd;
+		}
 
+
+		if (isKeyPressed(GLFW_KEY_L, window.getGLFWwindow()))
+		{
+			glm::vec3 toAdd = -glm::vec3{ 0.0f,0.0f,1.0f } *speedMultiplier;
+			this->transform.position += toAdd;
+		}
+
+		if (isKeyPressed(GLFW_KEY_UP, window.getGLFWwindow()))
+		{
+			glm::vec3 toAdd = glm::vec3{ 0.0f,1.0f,0.0f } *speedMultiplier;
+			this->transform.position += toAdd;
+		}
+
+
+		if (isKeyPressed(GLFW_KEY_DOWN, window.getGLFWwindow()))
+		{
+			glm::vec3 toAdd = -glm::vec3{ 0.0f,1.0f,0.0f } *speedMultiplier;
+			this->transform.position += toAdd;
+		}
 
 		if (isKeyPressed(GLFW_KEY_LEFT, window.getGLFWwindow()))
 		{
-			glm::vec3 toAdd = glm::vec3{ 0.0f,0.0f,1.0f } * speedMultiplier;
+			glm::vec3 toAdd = -glm::vec3{ 1.0f,0.0f,0.0f } * speedMultiplier;
 			this->transform.position += toAdd;
 		}
 
 
 		if (isKeyPressed(GLFW_KEY_RIGHT, window.getGLFWwindow()))
 		{
-			glm::vec3 toAdd = glm::vec3{ 0.0f,0.0f,-1.0f } * speedMultiplier;
+			glm::vec3 toAdd = glm::vec3{ 1.0f,0.0f,0.0f } * speedMultiplier;
 			this->transform.position += toAdd;
 		}
 

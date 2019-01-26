@@ -2,8 +2,47 @@
 #include <iostream>
 
 
+#if 1
+#include "Games/Game.h"
+#include "Games/HomeGame/HomeGame.h"
+
+int main()
+{
+
+	//float dt = 0.1;
+	//for (float t = 0; t < 20; t += 0.1)
+	//{
+	//	int int_t = (int)  (t / 2.0f);
+	//	int int_t_dt = (int) ((t - dt)/2.0f);
+	//	std::cout << int_t << "," << int_t_dt << std::endl;
+	//}
+	//system("pause");
+	HomeGame game{ 900*2, 500*2 };
+	return game.execute();
+	//Game breakout{ 1000, 1000 };
+	//return breakout.execute();
+}
+
+#endif
 
 
+#if 0
+#include "Chapters/Chapter1_gettingstarted.h"
+#include "Chapters/Chapter2_lighting.h"
+#include "Chapters/Chapter4_shadows.h"
+#include "Chapters/Chapter_practice.h"
+#include "Games/Game.h"
+int main()
+{
+	//return chapter1();
+	//return chapter2();
+	//return chapter4();
+	//return chapter_practice();
+
+	Game breakout{ 1000, 1000 };
+	return breakout.execute();
+}
+#endif
 
 #if 0
 
@@ -13,7 +52,7 @@
 int main()
 {
 	// create window
-	Window window{ "Example", 1000, 1000 };
+	Window window{ "Example", 1600, 900};
 
 	// create camera and projection
 	Camera camera{ glm::vec3{0.0f, 0.0f, 5.0f}, glm::vec3{0.0f, 0.0f, 0.0f}, glm::vec3{0.0f, 1.0f, 0.0f} };
@@ -25,6 +64,7 @@ int main()
 	Model box{ "./res/model/cube/cube.obj", glm::vec3{1.0f, 0.0f,0.0f},&loadedTextures };
 	Model paper{ "./res/model/cube/cube.obj", glm::vec3{0.0f, 1.0f,0.0f},&loadedTextures };
 	Model iron{ "./res/model/cube/cube.obj", glm::vec3{0.0f, 0.0f,1.0f},&loadedTextures };
+
 
 
 	Shader objectsShader;
@@ -68,7 +108,13 @@ int main()
 
 #if 0
 
+#include "Chapters/Chapter1_gettingstarted.h"
+#include "Chapters/Chapter2_lighting.h"
+#include "Chapters/Chapter4_shadows.h"
+#include "Chapters/Chapter_practice.h"
+#include "Games/Game.h"
 #include <irrKlang.h>
+
 using namespace irrklang;
 
 
@@ -86,16 +132,17 @@ int main()
 	glm::mat4 projection = glm::perspective(glm::radians(90.0f), (float)window.getWidth() / (float)window.getHeight(), 0.1f, 50.0f);
 	//glm::mat4 projection = glm::ortho(-5.0f, 5.0f, -5.0f, 5.0f, 1.0f, 10.0f);
 
+
+	Shader objectsShader;
+	objectsShader.generate("./res/shaders/objects_default.shader");
+	Shader quads_with_alpha_shader;
+	quads_with_alpha_shader.generate("./res/shaders/quads_with_alpha.shader");
+
 	// create a model
 	std::vector<Texture> loadedTextures;
 	Model man{ "./res/model/quad/quad_walking_man.obj", &loadedTextures };
 	glm::vec3 man_position = glm::vec3{ 0.0f, 0.0f, 0.0f };
 
-	Shader objectsShader;
-	objectsShader.generate("./res/shaders/objects_default.shader");
-
-	Shader quads_with_alpha_shader;
-	quads_with_alpha_shader.generate("./res/shaders/quads_with_alpha.shader");
 
 
 	while (!window.isClosed())
@@ -143,23 +190,6 @@ int main()
 }
 #endif
 
-#if 1
-#include "Chapters/Chapter1_gettingstarted.h"
-#include "Chapters/Chapter2_lighting.h"
-#include "Chapters/Chapter4_shadows.h"
-#include "Chapters/Chapter_practice.h"
-#include "Games/Game.h"
-int main()
-{
-	//return chapter1();
-	//return chapter2();
-	//return chapter4();
-	//return chapter_practice();
-
-	Game breakout{ 1000, 1000 };
-	return breakout.execute();
-}
-#endif
 
 #if 0
 int maina()

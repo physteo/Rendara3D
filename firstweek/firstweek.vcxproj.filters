@@ -87,6 +87,12 @@
     <ClCompile Include="Games\GameObject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Games\HomeGame\HomeGame.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Games\HomeGame\Level.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Window.h">
@@ -176,6 +182,15 @@
     <ClInclude Include="res\shaders\objects_default.shader">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Games\HomeGame\HomeGame.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Games\HomeGame\Level.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Games\HomeGame\HomePlayer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\shaders\basic.shader" />
@@ -196,5 +211,6 @@
     <None Include="res\shaders\depth.shader" />
     <None Include="res\shaders\instances_colored_quads.shader" />
     <None Include="res\shaders\quads_with_alpha.shader" />
+    <None Include="res\shaders\quads_default_walpha.shader" />
   </ItemGroup>
 </Project>

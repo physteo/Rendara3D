@@ -35,16 +35,12 @@ out vec4 color;
 in vec2 TexCoords;
 
 uniform float brightness;
-uniform int t;
-uniform int animation;
 
 void main()
 {
 	vec4 result = vec4(0.0f, 0.0f, 0.0f, 0.0f);
+	result += texture(material.diffuse, TexCoords);
 
-	float x_step = 0.25f;
-	float y_step = 1.0 / 6.0;
-	result += texture(material.diffuse, TexCoords + vec2(t * x_step, animation * y_step));
 
 	if (result.a == 0.0)
 		discard;

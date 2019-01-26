@@ -132,6 +132,8 @@
     <ClCompile Include="ErrorHandling.cpp" />
     <ClCompile Include="Games\GameObject.cpp" />
     <ClCompile Include="Games\GameLevel.cpp" />
+    <ClCompile Include="Games\HomeGame\Level.cpp" />
+    <ClCompile Include="Games\HomeGame\HomeGame.cpp" />
     <ClCompile Include="Games\InstanceSet.cpp" />
     <ClCompile Include="Games\ParticleSystem.cpp" />
     <ClCompile Include="ImageLoader.cpp" />
@@ -158,6 +160,9 @@
     <ClInclude Include="ErrorHandling.h" />
     <ClInclude Include="Games\GameObject.h" />
     <ClInclude Include="Games\GameLevel.h" />
+    <ClInclude Include="Games\HomeGame\HomePlayer.h" />
+    <ClInclude Include="Games\HomeGame\Level.h" />
+    <ClInclude Include="Games\HomeGame\HomeGame.h" />
     <ClInclude Include="Games\InstanceSet.h" />
     <ClInclude Include="Games\ParticleSystem.h" />
     <ClInclude Include="Games\Transform.h" />
@@ -195,6 +200,7 @@
     <None Include="res\shaders\instances_cubeDepth.shader" />
     <None Include="res\shaders\instances_depth.shader" />
     <None Include="res\shaders\joey\first.shader" />
+    <None Include="res\shaders\quads_default_walpha.shader" />
     <None Include="res\shaders\joey\second.shader" />
     <None Include="res\shaders\quads_with_alpha.shader" />
     <None Include="res\shaders\zzz_objects_shadows.shader" />

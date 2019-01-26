@@ -1,4 +1,4 @@
-# Blender MTL File: 'quad_walking_man.blend'
+# Blender MTL File: 'background_example.blend'
 # Material Count: 1
 
 newmtl Material.001
@@ -10,4 +10,4 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.000000
 d 1.000000
 illum 2
-map_Kd C:\Users\matte\source\repos\OpenGL\firstweek\res\textures\walking_man\Hat_man_sheet_fix.png
+map_Kd C:\Users\matte\source\repos\OpenGL\firstweek\res\textures\backgrounds\example_background_2.png
