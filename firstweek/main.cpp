@@ -8,15 +8,6 @@
 
 int main()
 {
-
-	//float dt = 0.1;
-	//for (float t = 0; t < 20; t += 0.1)
-	//{
-	//	int int_t = (int)  (t / 2.0f);
-	//	int int_t_dt = (int) ((t - dt)/2.0f);
-	//	std::cout << int_t << "," << int_t_dt << std::endl;
-	//}
-	//system("pause");
 	HomeGame game{ 900*2, 500*2 };
 	return game.execute();
 	//Game breakout{ 1000, 1000 };

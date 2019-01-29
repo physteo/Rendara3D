@@ -163,6 +163,7 @@
     <ClInclude Include="Games\HomeGame\HomePlayer.h" />
     <ClInclude Include="Games\HomeGame\Level.h" />
     <ClInclude Include="Games\HomeGame\HomeGame.h" />
+    <ClInclude Include="Games\HomeGame\LevelState.h" />
     <ClInclude Include="Games\InstanceSet.h" />
     <ClInclude Include="Games\ParticleSystem.h" />
     <ClInclude Include="Games\Transform.h" />
@@ -202,6 +203,7 @@
     <None Include="res\shaders\joey\first.shader" />
     <None Include="res\shaders\quads_default_walpha.shader" />
     <None Include="res\shaders\joey\second.shader" />
+    <None Include="res\shaders\quads_default_walpha_4x8.shader" />
     <None Include="res\shaders\quads_with_alpha.shader" />
     <None Include="res\shaders\zzz_objects_shadows.shader" />
     <None Include="res\shaders\depth.shader" />

@@ -191,6 +191,9 @@
     <ClInclude Include="Games\HomeGame\HomePlayer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Games\HomeGame\LevelState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\shaders\basic.shader" />
@@ -212,5 +215,6 @@
     <None Include="res\shaders\instances_colored_quads.shader" />
     <None Include="res\shaders\quads_with_alpha.shader" />
     <None Include="res\shaders\quads_default_walpha.shader" />
+    <None Include="res\shaders\quads_default_walpha_4x8.shader" />
   </ItemGroup>
 </Project>

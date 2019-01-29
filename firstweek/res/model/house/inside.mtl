@@ -1,0 +1,133 @@
+# Blender MTL File: 'inside.blend'
+# Material Count: 11
+
+newmtl Material
+Ns 96.078431
+Ka 1.000000 1.000000 1.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd C:\Users\matte\source\repos\OpenGL\firstweek\res\textures\inside\floor.png
+
+newmtl wallmaterial
+Ns 96.078431
+Ka 1.000000 1.000000 1.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd C:\Users\matte\source\repos\OpenGL\firstweek\res\textures\inside\wall1.png
+map_Bump C:\\Users\\matte\\source\\repos\\OpenGL\\firstweek\\res\\textures\\inside\\wall1_NRM.png
+
+newmtl wallmaterial.001
+Ns 96.078431
+Ka 1.000000 1.000000 1.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd C:\Users\matte\source\repos\OpenGL\firstweek\res\textures\inside\wall1.png
+map_Bump C:\\Users\\matte\\source\\repos\\OpenGL\\firstweek\\res\\textures\\inside\\wall1_NRM.png
+
+newmtl wallmaterial.001_NONE
+Ns 96.078431
+Ka 1.000000 1.000000 1.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Bump C:\\Users\\matte\\source\\repos\\OpenGL\\firstweek\\res\\textures\\inside\\wall1_NRM.png
+map_Kd C:\\Users\\matte\\source\\repos\\OpenGL\\firstweek\\res\\textures\\inside\\wall1.png
+
+newmtl wallmaterial.003
+Ns 96.078431
+Ka 1.000000 1.000000 1.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd C:\Users\matte\source\repos\OpenGL\firstweek\res\textures\inside\wall1.png
+map_Bump C:\\Users\\matte\\source\\repos\\OpenGL\\firstweek\\res\\textures\\inside\\wall1_NRM.png
+
+newmtl wallmaterial.003_NONE
+Ns 96.078431
+Ka 1.000000 1.000000 1.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Bump C:\\Users\\matte\\source\\repos\\OpenGL\\firstweek\\res\\textures\\inside\\wall1_NRM.png
+map_Kd C:\\Users\\matte\\source\\repos\\OpenGL\\firstweek\\res\\textures\\inside\\wall1.png
+
+newmtl wallmaterial.004
+Ns 96.078431
+Ka 1.000000 1.000000 1.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd C:\Users\matte\source\repos\OpenGL\firstweek\res\textures\inside\wall1.png
+map_Bump C:\\Users\\matte\\source\\repos\\OpenGL\\firstweek\\res\\textures\\inside\\wall1_NRM.png
+
+newmtl wallmaterial.004_NONE
+Ns 96.078431
+Ka 1.000000 1.000000 1.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Bump C:\\Users\\matte\\source\\repos\\OpenGL\\firstweek\\res\\textures\\inside\\wall1_NRM.png
+map_Kd C:\\Users\\matte\\source\\repos\\OpenGL\\firstweek\\res\\textures\\inside\\wall1.png
+
+newmtl wallmaterial.005
+Ns 96.078431
+Ka 1.000000 1.000000 1.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd C:\Users\matte\source\repos\OpenGL\firstweek\res\textures\inside\wall1.png
+map_Bump C:\\Users\\matte\\source\\repos\\OpenGL\\firstweek\\res\\textures\\inside\\wall1_NRM.png
+
+newmtl wallmaterial.005_NONE
+Ns 96.078431
+Ka 1.000000 1.000000 1.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Bump C:\\Users\\matte\\source\\repos\\OpenGL\\firstweek\\res\\textures\\inside\\wall1_NRM.png
+map_Kd C:\\Users\\matte\\source\\repos\\OpenGL\\firstweek\\res\\textures\\inside\\wall1.png
+
+newmtl wallmaterial_NONE
+Ns 96.078431
+Ka 1.000000 1.000000 1.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Bump C:\\Users\\matte\\source\\repos\\OpenGL\\firstweek\\res\\textures\\inside\\wall1_NRM.png
+map_Kd C:\\Users\\matte\\source\\repos\\OpenGL\\firstweek\\res\\textures\\inside\\wall1.png

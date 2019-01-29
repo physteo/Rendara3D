@@ -386,9 +386,9 @@ void GameLevel::update(Window& window)
 
 	}
 
-	pointLight.eye = ball.transform.position + glm::vec3{0.0f, 2.0f, 0.0f};
+	//pointLight.eye = ball.transform.position + glm::vec3{0.0f, 2.0f, 0.0f};
 
-	//pointLight.eye = glm::vec3{ 5.0 + 6.0* sin(3.0 * t), 1.5, 5.0 + 6.0*cos(3.0 * t) };
+	pointLight.eye = glm::vec3{ 5.0 + 6.0* sin(3.0 * t), 1.5, 5.0 + 6.0*cos(3.0 * t) };
 	//sun.eye = glm::vec3{ 5.0 - 10.0* sin(0.3 * t), 10.0, 5.0 - 10.0*cos(0.3 * t) };
 
 	processCommands(window);
@@ -407,8 +407,8 @@ void GameLevel::processCommands(Window& window)
 
 bool GameLevel::isCompleted()
 {
-	if (ball.transform.position.x >= 12.0)
-		return true;
+	//if (ball.transform.position.x >= 12.0)
+	//	return true;
 	return false;
 }
 
