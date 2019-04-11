@@ -9,8 +9,12 @@ static ShaderProgramSource ParseShader(const std::string& filepath)
 	{
 		NONE = -1, VERTEX = 0, FRAGMENT = 1, GEOMETRY = 2
 	};
-	std::string line;
+	std::string line = "";
 	std::stringstream ss[3];
+	ss[0].str(std::string());
+	ss[1].str(std::string());
+	ss[2].str(std::string());
+
 	ShaderType type = ShaderType::NONE;
 	while (getline(stream, line))
 	{
@@ -45,29 +49,48 @@ void Shader::generate(const std::string& path)
 	m_path = path;
 	ShaderProgramSource source = ParseShader(m_path);
 
+	std::cout << "shader parsed" << std::endl;
+
+
 	std::string vertexShader = source.VertexSource;
 	std::string fragmentShader = source.FragmentSource;
 	std::string geometryShader = source.GeometrySource;
 
 	/* create and compile vertex, fragment and geometry (if present) shaders */
 	unsigned int vs = compileShader(GL_VERTEX_SHADER, vertexShader);
+	std::cout << "vs compiled" << std::endl;
+
 	unsigned int fs = compileShader(GL_FRAGMENT_SHADER, fragmentShader);
+	std::cout << "fs compiled" << std::endl;
+
+
 	unsigned int gs = -1;
 	if (geometryShader != "") {
 		gs = compileShader(GL_GEOMETRY_SHADER, geometryShader);
+		std::cout << "gs compiled" << std::endl;
+
 	}
 
 
 	/* create a program and attach the shaders */
 	GLCall(m_id = glCreateProgram());
+	std::cout << "program creates" << std::endl;
+
 	GLCall(glAttachShader(m_id, vs));
+	std::cout << "vs attached" << std::endl;
+
 	GLCall(glAttachShader(m_id, fs));
+	std::cout << "fs attached" << std::endl;
+
 	if (geometryShader != "") {
 		GLCall(glAttachShader(m_id, gs));
+		std::cout << "gs attached" << std::endl;
+
 	}
 
 	/* link the program */
 	GLCall(glLinkProgram(m_id));
+	std::cout << "program linked" << std::endl;
 
 	/* validate the program */
 	//GLCall(glValidateProgram(m_id));
@@ -75,9 +98,15 @@ void Shader::generate(const std::string& path)
 
 	/* now the shaders' memory can be freed */
 	GLCall(glDeleteShader(vs));
+	std::cout << "vs deleted" << std::endl;
+
 	GLCall(glDeleteShader(fs));
+	std::cout << "fs deleted" << std::endl;
+
 	if (geometryShader != "") {
 		GLCall(glDeleteShader(gs));
+		std::cout << "gs deleted" << std::endl;
+
 	}
 
 	/* check the status of linking and print log if linking failed */
@@ -105,8 +134,15 @@ unsigned int Shader::compileShader(unsigned int type, const std::string & shader
 	unsigned int s;
 	const char* src = shader.c_str();
 	GLCall(s = glCreateShader(type));
-	GLCall(glShaderSource(s, 1, &src, NULL));
+	std::cout << "shader created" << std::endl;
+	//std::cout << src << std::endl;
+	GLint length = strlen(src);
+	std::cout << "length of string is:" << length << std::endl;
+	GLCall(glShaderSource(s, 1, &src, &length));
+	std::cout << "glShaderSource called" << std::endl;
+
 	GLCall(glCompileShader(s));
+	std::cout << "glCompileShader called" << std::endl;
 
 	GLint result;
 	GLCall(glGetShaderiv(s, GL_COMPILE_STATUS, &result));

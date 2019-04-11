@@ -24,11 +24,18 @@ Window::Window(std::string title, double width, double height, Monitor monitor)
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);// GLFW_OPENGL_CORE_PROFILE); 
 
+	/* keep the size fixed */
+	glfwWindowHint(GLFW_RESIZABLE, GL_FALSE); // TODO: make windows resizable
+
 	/* Create a windowed mode window and its OpenGL context */
-	if(monitor == Monitor::G_NOTSPECIFIED)
+	if (monitor == Monitor::G_NOTSPECIFIED)
+	{
 		m_window = glfwCreateWindow(width, height, title.c_str(), nullptr, nullptr);
+	}
 	else
+	{
 		m_window = glfwCreateWindow(width, height, title.c_str(), monitors[monitor], nullptr);
+	}
 
 	if (!m_window)
 	{
@@ -63,7 +70,7 @@ Window::Window(std::string title, double width, double height, Monitor monitor)
 	//glFrontFace(GL_CCW);
 
 	// disable this to have HDR, and in the hdr shader abilitate the calculations for the hdr
-	glEnable(GL_FRAMEBUFFER_SRGB);
+	//glEnable(GL_FRAMEBUFFER_SRGB);
 
 	// set the viewport
 	setViewPort(m_width, m_height);

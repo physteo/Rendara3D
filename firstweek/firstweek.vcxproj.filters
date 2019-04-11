@@ -21,13 +21,7 @@
     <ClCompile Include="ErrorHandling.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Buffer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Shader.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="VertexArray.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Camera.cpp">
@@ -45,52 +39,52 @@
     <ClCompile Include="ImageLoader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Chapters\Chapter_practice.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SunLight.cpp">
+    <ClCompile Include="buffers\Buffer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="OrthoFrustrum.cpp">
+    <ClCompile Include="buffers\VertexArray.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ShadowMap2D.cpp">
+    <ClCompile Include="lighting\SunLight.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="PointLight.cpp">
+    <ClCompile Include="lighting\PointLight.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="PerspectiveFrustrum.cpp">
+    <ClCompile Include="lighting\OrthoFrustrum.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ShadowCubeMap.cpp">
+    <ClCompile Include="lighting\PerspectiveFrustrum.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Games\Game.cpp">
+    <ClCompile Include="lighting\ShadowCubeMap.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Games\GameLevel.cpp">
+    <ClCompile Include="lighting\ShadowMap2D.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Quad.cpp">
+    <ClCompile Include="buffers\FrameBuffer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Games\ParticleSystem.cpp">
+    <ClCompile Include="Demos\ParticleSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Games\InstanceSet.cpp">
+    <ClCompile Include="Demos\Breakout\Game.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Games\GameObject.cpp">
+    <ClCompile Include="Demos\Breakout\GameLevel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Games\HomeGame\HomeGame.cpp">
+    <ClCompile Include="Demos\Breakout\Players.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Games\HomeGame\Level.cpp">
+    <ClCompile Include="Renderer\InstanceSet.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Demos\Shadows\demo_shadows.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -101,13 +95,7 @@
     <ClInclude Include="ErrorHandling.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Buffer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Shader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="VertexArray.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="inputs.h">
@@ -128,49 +116,7 @@
     <ClInclude Include="ImageLoader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Chapters\Chapter_practice.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SunLight.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="OrthoFrustrum.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ShadowMap2D.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PointLight.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PerspectiveFrustrum.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ShadowCubeMap.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Games\Game.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Games\GameLevel.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Quad.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Games\ParticleSystem.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ObjectPool.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Games\InstanceSet.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Games\Transform.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Games\GameObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="res\shaders\objects_wlights.shader">
@@ -182,16 +128,67 @@
     <ClInclude Include="res\shaders\objects_default.shader">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Games\HomeGame\HomeGame.h">
+    <ClInclude Include="buffers\Buffer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Games\HomeGame\Level.h">
+    <ClInclude Include="buffers\VertexArray.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Games\HomeGame\HomePlayer.h">
+    <ClInclude Include="lighting\SunLight.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Games\HomeGame\LevelState.h">
+    <ClInclude Include="lighting\PointLight.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lighting\OrthoFrustrum.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lighting\PerspectiveFrustrum.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lighting\ShadowMap2D.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lighting\ShadowCubeMap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="buffers\FrameBuffer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Demos\ParticleSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Demos\Breakout\GameLevel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Demos\Breakout\Game.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Demos\Breakout\Players.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Demos\GameObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\Renderable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\Renderer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\Simple3DRenderer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\InstanceSet.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\Transform.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Demos\Shadows\demo_shadows.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="res\shaders\bckp_bckp_objects_wlights.shader">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -216,5 +213,6 @@
     <None Include="res\shaders\quads_with_alpha.shader" />
     <None Include="res\shaders\quads_default_walpha.shader" />
     <None Include="res\shaders\quads_default_walpha_4x8.shader" />
+    <None Include="res\shaders\bckp_objects_wlights.shader" />
   </ItemGroup>
 </Project>

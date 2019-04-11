@@ -16,16 +16,39 @@ public:
 	{
 		m_defaultColor = defaultColor;
 		loadModel(path, loadedTextures);
+		m_shader = nullptr;
+		m_castsShadows = false;
 	}
 
 	Model(const std::string path, std::vector<Texture>* loadedTextures) : Model{ path, glm::vec3{}, loadedTextures }
 	{}
 
-	void draw(const glm::vec3& scale, const glm::vec3& position, const glm::vec3& radians, Shader& shader);
-	void draw(float scale, const glm::vec3& position, const glm::vec3& radians, Shader& shader);
+	void assignShader(Shader* shader)
+	{
+		m_shader = shader;
+	}
 
-	void draw(const glm::vec3& scale, const glm::vec3& position, const glm::vec3& radians, Shader& shader, Material& material);
-	void draw(float scale, const glm::vec3& position, const glm::vec3& radians, Shader& shader, Material& material);
+	Shader* getShader() const
+	{
+		return m_shader;
+	}
+
+	void castsShadows(bool casts)
+	{
+		m_castsShadows = casts;
+	}
+	bool getCastShadows() const
+	{
+		return m_castsShadows;
+	}
+
+
+
+	void draw(const glm::vec3& scale, const glm::vec3& position, const glm::vec3& radians, Shader& shader) const;
+	void draw(float scale, const glm::vec3& position, const glm::vec3& radians, Shader& shader) const;
+
+	void draw(const glm::vec3& scale, const glm::vec3& position, const glm::vec3& radians, Shader& shader, Material& material) const;
+	void draw(float scale, const glm::vec3& position, const glm::vec3& radians, Shader& shader, Material& material) const;
 
 
 	const std::vector<Mesh>* getMeshes() const { return &m_meshes; }
@@ -40,15 +63,20 @@ public:
 	//}
 
 private:
-	float     m_scale;
-	glm::vec3 m_position;
-	glm::vec3 m_rotation;
+	//float     m_scale;
+	//glm::vec3 m_position;
+	//glm::vec3 m_rotation;
 
 	std::vector<Mesh> m_meshes;
-	//std::string		  m_directory;
 	std::string		  m_path;
+	//std::string		  m_directory;
 
 	glm::vec3 m_defaultColor;
+
+
+	Shader* m_shader;
+	bool m_castsShadows;
+
 
 	void loadModel(const std::string path, std::vector<Texture>* loadedTextures);
 	void processNode(aiNode* node,   const aiScene* scene, std::vector<Texture>* loadedTextures);

@@ -8,6 +8,7 @@
 #include <exception>
 #include <stdexcept>
 
+//! Specify the monitor to use. To be used when creating the Window.
 enum Monitor
 {
 	G_PRIMARY = 0,
@@ -15,10 +16,10 @@ enum Monitor
 	G_NOTSPECIFIED = -1
 };
 
-	//! Class for the window on which things will be rendered.
-	/*!
-		Creates a window for rendering stuff on the screen. Must be created before anything else. 
-	*/
+//! Class for the window on which things will be rendered.
+/*!
+	Creates a window for rendering stuff on the screen. Must be created before anything else. 
+*/
 class Window
 {
 private:
@@ -53,6 +54,9 @@ public:
 	void swapBuffers() const;
 	void pollEvents() const;
 	void terminate() const;
+
+	void setWidth(double width)   { m_width  = width; }
+	void setHeight(double height) { m_height = height; }
 
 	double getWidth() const { return m_width; }
 	double getHeight() const { return m_height; }

@@ -2,6 +2,7 @@
 #version 330 core
 #pragma optionNV unroll all
 
+#define ciao 1
 
 layout(location = 0) in vec3 aPos;
 layout(location = 1) in vec3 aNormal;

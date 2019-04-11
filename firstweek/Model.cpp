@@ -1,6 +1,6 @@
 #include "Model.h"
 
-void Model::draw(const glm::vec3& scale, const glm::vec3& position, const glm::vec3& radians, Shader& shader)
+void Model::draw(const glm::vec3& scale, const glm::vec3& position, const glm::vec3& radians, Shader& shader) const
 {
 	for (size_t i = 0; i < m_meshes.size(); i++)
 	{
@@ -8,13 +8,13 @@ void Model::draw(const glm::vec3& scale, const glm::vec3& position, const glm::v
 	}
 }
 
-void Model::draw(float scale, const glm::vec3& position, const glm::vec3& radians, Shader& shader)
+void Model::draw(float scale, const glm::vec3& position, const glm::vec3& radians, Shader& shader) const
 {
 	this->draw(glm::vec3{ scale }, position, radians, shader);
 }
 
 
-void Model::draw(const glm::vec3& scale, const glm::vec3& position, const glm::vec3& radians, Shader& shader, Material& material)
+void Model::draw(const glm::vec3& scale, const glm::vec3& position, const glm::vec3& radians, Shader& shader, Material& material) const
 {
 	for (size_t i = 0; i < m_meshes.size(); i++)
 	{
@@ -22,7 +22,7 @@ void Model::draw(const glm::vec3& scale, const glm::vec3& position, const glm::v
 	}
 }
 
-void Model::draw(float scale, const glm::vec3& position, const glm::vec3& radians, Shader& shader, Material& material)
+void Model::draw(float scale, const glm::vec3& position, const glm::vec3& radians, Shader& shader, Material& material) const
 {
 	this->draw(glm::vec3{ scale }, position, radians, shader, material);
 }

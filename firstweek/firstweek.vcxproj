@@ -85,7 +85,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalDependencies>irrKlang.lib;assimp-vc140-mt.lib;opengl32.lib;glew32s.lib;glfw3.lib;user32.lib;Gdi32.lib;Shell32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)Dependencies\GLEW\glew-2.1.0\lib\Release\Win32;$(SolutionDir)Dependencies\GLFW-build\src\Release;$(SolutionDir)Dependencies\assimp\code\Release;$(SolutionDir)Dependencies\irrKlang-1.6.0\lib\Win32-visualStudio</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)Dependencies\GLEW\glew-2.1.0\lib\Release\Win32;$(SolutionDir)Dependencies\GLFW-build\src\Release;$(SolutionDir)Dependencies\assimp\code\Release;$(SolutionDir)Dependencies\irrKlang-1.6.0\lib\Win32-visualStudio;$(SolutionDir)Dependencies\GLEW\glew-2.1.0\bin\Release\Win32</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -125,66 +125,65 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Buffer.cpp" />
+    <ClCompile Include="buffers\Buffer.cpp" />
+    <ClCompile Include="buffers\FrameBuffer.cpp" />
     <ClCompile Include="Camera.cpp" />
-    <ClCompile Include="Chapters\Chapter_practice.cpp" />
-    <ClCompile Include="Games\Game.cpp" />
+    <ClCompile Include="Demos\Shadows\demo_shadows.cpp" />
+    <ClCompile Include="Demos\Breakout\Game.cpp" />
     <ClCompile Include="ErrorHandling.cpp" />
-    <ClCompile Include="Games\GameObject.cpp" />
-    <ClCompile Include="Games\GameLevel.cpp" />
-    <ClCompile Include="Games\HomeGame\Level.cpp" />
-    <ClCompile Include="Games\HomeGame\HomeGame.cpp" />
-    <ClCompile Include="Games\InstanceSet.cpp" />
-    <ClCompile Include="Games\ParticleSystem.cpp" />
+    <ClCompile Include="Demos\Breakout\Players.cpp" />
+    <ClCompile Include="Demos\Breakout\GameLevel.cpp" />
+    <ClCompile Include="Renderer\InstanceSet.cpp" />
+    <ClCompile Include="Demos\ParticleSystem.cpp" />
     <ClCompile Include="ImageLoader.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="Model.cpp" />
-    <ClCompile Include="OrthoFrustrum.cpp" />
-    <ClCompile Include="PerspectiveFrustrum.cpp" />
-    <ClCompile Include="PointLight.cpp" />
-    <ClCompile Include="Quad.cpp" />
+    <ClCompile Include="lighting\OrthoFrustrum.cpp" />
+    <ClCompile Include="lighting\PerspectiveFrustrum.cpp" />
+    <ClCompile Include="lighting\PointLight.cpp" />
     <ClCompile Include="Shader.cpp" />
-    <ClCompile Include="ShadowCubeMap.cpp" />
-    <ClCompile Include="ShadowMap2D.cpp" />
-    <ClCompile Include="SunLight.cpp" />
+    <ClCompile Include="lighting\ShadowCubeMap.cpp" />
+    <ClCompile Include="lighting\ShadowMap2D.cpp" />
+    <ClCompile Include="lighting\SunLight.cpp" />
     <ClCompile Include="Texture.cpp" />
-    <ClCompile Include="VertexArray.cpp" />
+    <ClCompile Include="buffers\VertexArray.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Buffer.h" />
+    <ClInclude Include="buffers\Buffer.h" />
+    <ClInclude Include="buffers\FrameBuffer.h" />
     <ClInclude Include="Camera.h" />
-    <ClInclude Include="Chapters\Chapter_practice.h" />
-    <ClInclude Include="Games\Game.h" />
+    <ClInclude Include="Demos\Shadows\demo_shadows.h" />
+    <ClInclude Include="Demos\Breakout\Game.h" />
+    <ClInclude Include="Demos\Breakout\Players.h" />
     <ClInclude Include="ErrorHandling.h" />
-    <ClInclude Include="Games\GameObject.h" />
-    <ClInclude Include="Games\GameLevel.h" />
-    <ClInclude Include="Games\HomeGame\HomePlayer.h" />
-    <ClInclude Include="Games\HomeGame\Level.h" />
-    <ClInclude Include="Games\HomeGame\HomeGame.h" />
-    <ClInclude Include="Games\HomeGame\LevelState.h" />
-    <ClInclude Include="Games\InstanceSet.h" />
-    <ClInclude Include="Games\ParticleSystem.h" />
-    <ClInclude Include="Games\Transform.h" />
+    <ClInclude Include="Demos\Breakout\GameLevel.h" />
+    <ClInclude Include="Renderer\InstanceSet.h" />
+    <ClInclude Include="Demos\ParticleSystem.h" />
+    <ClInclude Include="Renderer\Transform.h" />
+    <ClInclude Include="Demos\GameObject.h" />
+    <ClInclude Include="Renderer\Renderable.h" />
+    <ClInclude Include="Renderer\Renderer.h" />
+    <ClInclude Include="Renderer\Simple3DRenderer.h" />
     <ClInclude Include="ImageLoader.h" />
     <ClInclude Include="inputs.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="Model.h" />
-    <ClInclude Include="OrthoFrustrum.h" />
-    <ClInclude Include="PerspectiveFrustrum.h" />
-    <ClInclude Include="PointLight.h" />
-    <ClInclude Include="Quad.h" />
+    <ClInclude Include="lighting\OrthoFrustrum.h" />
+    <ClInclude Include="lighting\PerspectiveFrustrum.h" />
+    <ClInclude Include="lighting\PointLight.h" />
+    <ClInclude Include="res\shaders\bckp_bckp_objects_wlights.shader" />
     <ClInclude Include="res\shaders\objects_default.shader" />
     <ClInclude Include="res\shaders\zzz_joey.fs" />
     <ClInclude Include="ObjectPool.h" />
     <ClInclude Include="res\shaders\objects_wlights.shader" />
     <ClInclude Include="Shader.h" />
-    <ClInclude Include="ShadowCubeMap.h" />
-    <ClInclude Include="ShadowMap2D.h" />
-    <ClInclude Include="SunLight.h" />
+    <ClInclude Include="lighting\ShadowCubeMap.h" />
+    <ClInclude Include="lighting\ShadowMap2D.h" />
+    <ClInclude Include="lighting\SunLight.h" />
     <ClInclude Include="Texture.h" />
-    <ClInclude Include="VertexArray.h" />
+    <ClInclude Include="buffers\VertexArray.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
   <ItemGroup>
@@ -192,6 +191,7 @@
     <None Include="res\shaders\basic.shader" />
     <None Include="res\shaders\1_lamp.shader" />
     <None Include="res\shaders\1_object.shader" />
+    <None Include="res\shaders\bckp_objects_wlights.shader" />
     <None Include="res\shaders\cubeDepth.shader" />
     <None Include="res\shaders\cubemap.shader" />
     <None Include="res\shaders\debugCubeDepth.shader" />

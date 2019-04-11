@@ -15,7 +15,8 @@ enum Format
 	RGB = GL_RGB,
 	RGBA = GL_RGBA,
 	sRGB = GL_SRGB,
-	sRGBA= GL_SRGB_ALPHA
+	sRGBA = GL_SRGB_ALPHA,
+	RGBA16=GL_RGBA16
 };
 
 
@@ -35,6 +36,9 @@ public:
 	void generate(const std::string& filepath, Format internalFormat); 
 	//!< Allocates memory for the texture and fills it with pixel data manually specified 
 	void generate(int width, int height, int nrChannels, Format internalFormat, const unsigned char* data); 
+	//!< Allocates memory for the texture and fills it with pixel data manually specified, and specified data format
+	void generate(int width, int height, int nrChannels, Format internalFormat, GLenum dataFormat, const unsigned char* data);
+
 	//!< activates thistexture.
 	void bind()   const { GLCall(glBindTexture(GL_TEXTURE_2D, m_id)); } 
 	//!< deactivates any texture.

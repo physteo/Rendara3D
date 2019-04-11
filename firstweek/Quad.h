@@ -6,12 +6,19 @@
 
 #include "ErrorHandling.h"
 
-class Quad
+
+class Quad : public Mesh
+{
+
+};
+
+
+class TempQuad
 {
 	unsigned int quadVAOi;
 
 public:
-	Quad()
+	TempQuad()
 	{
 		unsigned int quadVBOi;
 		float quadVertices[] = {

@@ -19,6 +19,11 @@ void Texture::generate(const std::string& filepath, Format internalFormat)
 
 void Texture::generate(int width, int height, int nrChannels, Format internalFormat, const unsigned char* data)
 {
+	generate(width, height, nrChannels, internalFormat, GL_UNSIGNED_BYTE, data);
+}
+
+void Texture::generate(int width, int height, int nrChannels, Format internalFormat, GLenum dataFormat, const unsigned char* data)
+{
 	Format format;
 	if (nrChannels == 4)
 		format = Format::RGBA;
@@ -33,10 +38,12 @@ void Texture::generate(int width, int height, int nrChannels, Format internalFor
 	// choose format based on the number of channels
 	GLCall(glGenTextures(1, &m_id));
 	bind();
-	GLCall(glTexImage2D(GL_TEXTURE_2D, 0, internalFormat, width, height, 0, format, GL_UNSIGNED_BYTE, (void*)data));
+	GLCall(glTexImage2D(GL_TEXTURE_2D, 0, internalFormat, width, height, 0, format, dataFormat, (void*)data));
 	GLCall(glGenerateMipmap(GL_TEXTURE_2D));
 	unbind();
 }
+
+
 
 Material::Material(const Texture& diffuse, const Texture& specular, const Texture& normal, float shininess)
 {

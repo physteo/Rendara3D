@@ -9,7 +9,7 @@
 #include "./../ErrorHandling.h"
 #include "./../Window.h"
 #include "./../Shader.h"
-#include "./../VertexArray.h"
+#include "./../buffers/VertexArray.h"
 #include "./../Camera.h"
 #include "./../Texture.h"
 

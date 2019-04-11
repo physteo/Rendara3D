@@ -2,44 +2,198 @@
 #include <iostream>
 
 
-#if 1
-#include "Games/Game.h"
-#include "Games/HomeGame/HomeGame.h"
-
-int main()
-{
-	HomeGame game{ 900*2, 500*2 };
-	return game.execute();
-	//Game breakout{ 1000, 1000 };
-	//return breakout.execute();
-}
-
-#endif
-
-
 #if 0
-#include "Chapters/Chapter1_gettingstarted.h"
-#include "Chapters/Chapter2_lighting.h"
-#include "Chapters/Chapter4_shadows.h"
-#include "Chapters/Chapter_practice.h"
-#include "Games/Game.h"
+#include "./Demos/Breakout/Game.h"
+
 int main()
 {
-	//return chapter1();
-	//return chapter2();
-	//return chapter4();
-	//return chapter_practice();
-
 	Game breakout{ 1000, 1000 };
 	return breakout.execute();
 }
+
 #endif
+
+// ECS testing
+#if 0
+
+#include "Window.h"
+#include "Camera.h"
+#include "Model.h"
+#include "Quad.h"
+#include "./lighting/SunLight.h"
+#include "./lighting/ShadowMap2D.h"
+
+#include "entity/Entity.h"
+#include "graphics/Simple3DRenderer.h"
+class RenderingSystem
+{
+	graphics::Simple3DRenderer renderer;
+
+public:
+	void update(Entity& e)
+	{
+		if (e.hasModel() && e.hasTransform())
+		{
+			renderer.submit(e.getModel(), e.getTransform());
+		}
+	}
+
+	void draw()
+	{
+		renderer.draw();
+	}
+
+	void draw(Shader& shader)
+	{
+		renderer.draw(shader);
+	}
+
+};
+
+
+int main()
+{
+	// create window
+	Window window{ "Example", 1600, 900 };
+
+	// create camera and projection
+	Camera camera{ glm::vec3{0.0f, 0.0f, 5.0f}, glm::vec3{0.0f, 0.0f, 0.0f}, glm::vec3{0.0f, 1.0f, 0.0f} };
+	glm::mat4 projection = glm::perspective(glm::radians(90.0f), (float)window.getWidth() / (float)window.getHeight(), 0.1f, 50.0f);
+
+	// create shaders
+	Shader objectsShader;
+	objectsShader.generate("./res/shaders/objects_default.shader");
+
+	// create a model
+	std::vector<Texture> loadedTextures;
+	Model box{ "./res/model/cube/cube.obj", glm::vec3{1.0f, 0.0f,0.0f},&loadedTextures };
+	Model paper{ "./res/model/cube/cube.obj", glm::vec3{0.0f, 1.0f,0.0f},&loadedTextures };
+	Model iron{ "./res/model/cube/cube.obj", glm::vec3{0.0f, 0.0f,1.0f},&loadedTextures };
+	box.assignShader(&objectsShader);
+	paper.assignShader(&objectsShader);
+	iron.assignShader(&objectsShader);
+
+
+
+	// create entities
+	std::vector<slotmap::object_id> eIDs;
+	slotmap::SlotMap<Entity> entities;
+	//create stone
+	eIDs.push_back(entities.create_object());
+	Entity* boxEnt = entities.get_object(eIDs.back());
+	boxEnt->setTransform(Transform{ glm::vec3{ 0.0f, -1.5f, 0.0f }, glm::vec3{0.0f}, glm::vec3{1.0f} });
+	boxEnt->setModel(&box);
+
+	eIDs.push_back(entities.create_object());
+	Entity* paperEnt = entities.get_object(eIDs.back());
+	paperEnt->setTransform(Transform{ glm::vec3{ 0.0f, 0.0f, 0.0f }, glm::vec3{0.0f}, glm::vec3{1.0f} });
+	paperEnt->setModel(&box);
+
+	eIDs.push_back(entities.create_object());
+	Entity* ironEnt = entities.get_object(eIDs.back());
+	ironEnt->setTransform(Transform{ glm::vec3{ 0.0f, +1.5f, 0.0f }, glm::vec3{0.0f}, glm::vec3{1.0f} });
+	ironEnt->setModel(&box);
+
+	// rendering system
+	RenderingSystem rs;
+
+
+	while (!window.isClosed())
+	{
+		// ******* first stuff to do
+		window.updateTime();
+		window.clearColorBufferBit(0.5f, 0.5, 0.5f, 1.0f);
+
+
+		// render stuff
+		objectsShader.bind();
+		objectsShader.setUniformMatrix("projection", projection, false);
+		objectsShader.setUniformMatrix("view", camera.getViewMatrix(), false);
+		objectsShader.setUniformValue("cameraPos", camera.getEye());
+		objectsShader.setUniformValue("brightness", 0.75f);
+
+		for (size_t i = 0; i < eIDs.size(); i++)
+		{
+			rs.update(*entities.get_object(eIDs.at(i)));
+		}
+		//box.draw(1.0f, glm::vec3{ 0.0f, -1.5f, 0.0f }, glm::vec3{ 0.0f, 15.0f * window.getCurrentTime(), 0.0f }, objectsShader);
+		//iron.draw(1.0f, glm::vec3{ 0.0f, 0.0f, 0.0f }, glm::vec3{ 0.0f, -50.0f + 15.0f * window.getCurrentTime(), 0.0f }, objectsShader);
+		//paper.draw(1.0f, glm::vec3{ 0.0f, +1.5f, 0.0f }, glm::vec3{ 0.0f, -150.0f - 15.0f * window.getCurrentTime(), 0.0f }, objectsShader);
+
+		rs.draw();
+
+
+		// ******* last stuff to do
+		window.swapBuffers();
+		window.pollEvents();
+		window.updateLastFrameTime();
+	}
+
+}
+
+#include "entity/Entity.h"
+/*
+int maino()
+{
+
+	slotmap::SlotMap<Entity> entities;
+	std::vector<slotmap::object_id> eIDs;
+
+	//create stone
+	eIDs.push_back(entities.create_object());
+	Entity* stone = entities.get_object(eIDs.back());
+	stone->setTransform(Transform{ 1.0f });
+	stone->setModel(Model{ 1.0f });
+
+	eIDs.push_back(entities.create_object());
+	Entity* hedge = entities.get_object(eIDs.back());
+	hedge->setTransform(Transform{ 2.0f });
+	hedge->setModel(Model{ 3.0f });
+
+
+
+	MovementSystem ms;
+	RenderingSystem rs;
+
+	for (size_t t = 0; t < 10; t++)
+	{
+		std::cout << "time " << t << "-----------" << std::endl;
+		for (size_t i = 0; i < eIDs.size(); i++)
+		{
+			std::cout << "entity id" << eIDs.at(i) << ":  ";
+			Entity* e = entities.get_object(eIDs.at(i));
+			ms.update(*e);
+			rs.update(*e);
+		}
+		if (t == 5)
+			entities.get_object(eIDs.at(0))->unsetModel();
+	}
+	//   stone->setModel(2.0f);
+}
+*/
+
+
+#endif
+
+// demo shadows
+#if 1
+#include "./Demos/Shadows/demo_shadows.h"
+int main()
+{
+	return demo_shadows();
+}
+#endif
+
 
 #if 0
 
 #include "Window.h"
 #include "Camera.h"
 #include "Model.h"
+#include "Quad.h"
+#include "./lighting/SunLight.h"
+#include "./lighting/ShadowMap2D.h"
+
 int main()
 {
 	// create window
@@ -58,9 +212,53 @@ int main()
 
 
 
-	Shader objectsShader;
-	objectsShader.generate("./res/shaders/objects_default.shader");
+	//Shader objectsShader;
+	//objectsShader.generate("./res/shaders/objects_default.shader");
 
+	// lights
+	SunLight sun{ glm::vec3{5.0f}, glm::vec3{0.0f}, glm::vec3{1.0f}, glm::vec3{1.0f}, glm::vec3{1.0f} };
+	OrthoFrustrum orthoFrustrum{ 0.1, 10.0, 10, 10, 10, 10 };
+	ShadowMap2D sunShadowMap{ orthoFrustrum, 1024.0, 1024.0 };
+	sunShadowMap.generate();
+
+	// create shaders
+	Shader objectsShader;
+	Shader sunShadowShader;
+	objectsShader.generate("./res/shaders/objects_default.shader");
+	sunShadowShader.generate("./res/shaders/depth.shader");
+
+	// hdr init ******************************************************
+	unsigned int hdrFBO;
+	unsigned int colorBufferTexture;
+	TempQuad hdrQuad;
+	Shader hdrShader;
+	hdrShader.generate("./res/shaders/hdr.shader");
+	// create the HDRframebuffer
+	glGenFramebuffers(1, &hdrFBO);
+	glGenTextures(1, &colorBufferTexture);
+	glBindTexture(GL_TEXTURE_2D, colorBufferTexture);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA16, window.getWidth(), window.getHeight(), 0, GL_RGBA, GL_FLOAT, NULL);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+	// create depth buffer (renderbuffer)
+	unsigned int rboDepth;
+	glGenRenderbuffers(1, &rboDepth);
+	glBindRenderbuffer(GL_RENDERBUFFER, rboDepth);
+	glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT, window.getWidth(), window.getHeight());
+	// attach buffers
+	glBindFramebuffer(GL_FRAMEBUFFER, hdrFBO);
+	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, colorBufferTexture, 0);
+	glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, rboDepth);
+	if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
+		std::cout << "Framebuffer not complete!" << std::endl;
+	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
+	glBindTexture(GL_TEXTURE_2D, 0);
+	hdrShader.bind();
+	hdrShader.setUniformValue("exposure", 0.5f);
+	hdrShader.unbind();
+	// end of hdr init ************************************************************
 
 	while (!window.isClosed())
 	{
@@ -68,25 +266,45 @@ int main()
 		window.updateTime();
 		window.clearColorBufferBit(0.5f, 0.5, 0.5f, 1.0f);
 
+		sunShadowMap.startShadows(window, sunShadowShader, &sun);
+		box.draw(1.0f, glm::vec3{ 0.0f, -1.5f, 0.0f }, glm::vec3{ 0.0f, 15.0f * window.getCurrentTime(), 0.0f }, sunShadowShader);
+		sunShadowMap.stopShadows(window, sunShadowShader);
 
+
+		// hdr
+		GLCall(glBindFramebuffer(GL_FRAMEBUFFER, hdrFBO));
+		window.clearColorBufferBit(0.5f, 0.5, 0.5f, 1.0f);
 		// render stuff
 		objectsShader.bind();
 		objectsShader.setUniformMatrix("projection", projection, false);
 		objectsShader.setUniformMatrix("view", camera.getViewMatrix(), false);
-
-		objectsShader.setUniformValue("brightness", 2.0f);
+		// cast the light and use the shadow
+		sun.cast("sun[0]", objectsShader);
+		sunShadowMap.passUniforms(objectsShader, "shadowMap[0]", "lightSpaceMatrix[0]", sun.getViewMatrix());		//objectsShader.setUniformValue("brightness", 2.0f);
+		
 		box.draw(1.0f, glm::vec3{ 0.0f, -1.5f, 0.0f }, glm::vec3{ 0.0f, 15.0f * window.getCurrentTime(), 0.0f }, objectsShader);
 
-		objectsShader.bind();
-		objectsShader.setUniformValue("brightness", 1.0f);
+		//objectsShader.bind();
+		//objectsShader.setUniformValue("brightness", 1.0f);
 		iron.draw(1.0f, glm::vec3{ 0.0f, 0.0f, 0.0f }, glm::vec3{ 0.0f, - 50.0f + 15.0f * window.getCurrentTime(), 0.0f }, objectsShader);
 
-		objectsShader.bind();
-		objectsShader.setUniformValue("brightness", 0.75f);
+		//objectsShader.bind();
+		//objectsShader.setUniformValue("brightness", 0.75f);
 		paper.draw(1.0f, glm::vec3{ 0.0f, +1.5f, 0.0f }, glm::vec3{ 0.0f, -150.0f - 15.0f * window.getCurrentTime(), 0.0f }, objectsShader);
 
 
+
+		// disable HDR framebuffer
+		glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
+		// render on screen
+		hdrShader.bind();
+		hdrShader.setTexture(GL_TEXTURE_2D, "hdrBuffer", colorBufferTexture);
+		hdrQuad.draw();
+		hdrShader.unbind();
+
 		// game logic stuff
+
 
 		// ******* last stuff to do
 		window.swapBuffers();
@@ -102,8 +320,8 @@ int main()
 #include "Chapters/Chapter1_gettingstarted.h"
 #include "Chapters/Chapter2_lighting.h"
 #include "Chapters/Chapter4_shadows.h"
-#include "Chapters/Chapter_practice.h"
-#include "Games/Game.h"
+//#include "Chapters/Chapter_practice.h"
+//#include "Games/Game.h"
 #include <irrKlang.h>
 
 using namespace irrklang;
