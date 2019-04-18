@@ -6,7 +6,7 @@ Welcome to the source code of Rendara3D.
 
 <i>Rendara3D</i> is a simple engine for drawing objects on the screen, written in C++ and modern OpenGL.
 
-You can download a demo <a href="https://www.dropbox.com/s/bldd69moctoahwf/Rendara3D.zip?dl=0"><font color="blue">here</font></a> (requires Windows).
+You can download a demo <a href="dl.dropboxusercontent.com/s/bldd69moctoahwf/Rendara3D.zip?dl=0"><font color="blue">here</font></a> (requires Windows).
 
 Controls:
 ```python
