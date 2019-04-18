@@ -3,7 +3,7 @@
 /* opengl */
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
-#include "../ErrorHandling.h"
+#include "../utils/ErrorHandling.h"
 
 /* openGL maths */
 #include <glm/glm.hpp>
@@ -13,8 +13,7 @@
 /* stl */
 #include <iostream>
 
-#include "../Shader.h"
-#include "OrthoFrustrum.h"
+#include "../Shader/Shader.h"
 
 // Directional light. It contains three colors for ambient, diffuse, specular lighting.
 // The direction is specified as the difference between "center" and "eye". The position

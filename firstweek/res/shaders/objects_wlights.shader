@@ -2,18 +2,6 @@
 #version 330 core
 #pragma optionNV unroll all
 
-#define in1 -1
-#define i0 0
-#define i1 1
-#define i2 2
-#define i3 3
-#define i4 4
-#define i5 5
-#define i6 6
-#define i7 7
-#define i8 8
-
-
 #define NR_SUNS 1
 #define NR_POINT_LIGHTS 1
 
@@ -22,14 +10,29 @@ layout(location = 1) in vec3 aNormal;
 layout(location = 2) in vec2 aTexCoords;
 layout(location = 3) in vec3 aTangent;
 
+struct FlashLight {
+	vec3 position;
+	vec3 direction;
+	float cutoff;
+	float outerCutoff;
 
+	float constant;
+	float linear;
+	float quadratic;
+
+	vec3 ambient;
+	vec3 diffuse;
+	vec3 specular;
+};
 
 struct PointLight {
 	vec3 position;
 	vec3 position_world;
+
 	float constant;
 	float linear;
 	float quadratic;
+
 	vec3 ambient;
 	vec3 diffuse;
 	vec3 specular;
@@ -50,6 +53,7 @@ uniform vec3 cameraPos;
 out vec3	 cameraPos_world;
 out vec3	 cameraPos_tan;
 
+uniform FlashLight flashLight;
 uniform PointLight pointLights[NR_POINT_LIGHTS];
 
 // sun 
@@ -59,6 +63,7 @@ out vec4 FragPosLightSpace[NR_SUNS];    // shadow
 
 out vec3 FragPos;
 out vec3 FragPos_tan;
+
 out vec2 TexCoords;
 
 
@@ -76,6 +81,12 @@ out vec3 vs_out_sun_tan_ambient[NR_SUNS];
 out vec3 vs_out_sun_tan_diffuse[NR_SUNS];
 out vec3 vs_out_sun_tan_specular[NR_SUNS];
 
+//lol//out VS_OUT{
+//lol//	FlashLight flashLight_tan;
+//lol//	PointLight pointLights_tan[NR_POINT_LIGHTS];
+//lol//	Sun sun_tan[NR_SUNS];
+//lol//} vs_out;
+
 void main()
 {
 	gl_Position = projection * view * model *  vec4(aPos, 1.0f);
@@ -92,43 +103,45 @@ void main()
 	FragPos_tan = iTBN * FragPos;
 	cameraPos_tan = iTBN * cameraPos;
 
-	
+
+	//vs_out.flashLight_tan.position = iTBN * flashLight.position;
+	//vs_out.flashLight_tan.direction = normalize(iTBN * flashLight.direction);
+	//vs_out.flashLight_tan.cutoff = flashLight.cutoff;
+	//vs_out.flashLight_tan.outerCutoff = flashLight.outerCutoff;
+	//vs_out.flashLight_tan.constant = flashLight.constant;
+	//vs_out.flashLight_tan.linear = flashLight.linear;
+	//vs_out.flashLight_tan.quadratic = flashLight.quadratic;
+	//vs_out.flashLight_tan.ambient = flashLight.ambient;
+	//vs_out.flashLight_tan.diffuse = flashLight.diffuse;
+	//vs_out.flashLight_tan.specular = flashLight.specular;
+
+
+
+	for (int i = 0; i < NR_POINT_LIGHTS; i++)
+	{
+		vs_out_pointLights_tan_position[i] = iTBN * pointLights[i].position;
+		vs_out_pointLights_tan_position_world[i] = pointLights[i].position;
+		vs_out_pointLights_tan_constant[i] = pointLights[i].constant;
+		vs_out_pointLights_tan_linear[i] = pointLights[i].linear;
+		vs_out_pointLights_tan_quadratic[i] = pointLights[i].quadratic;
+		vs_out_pointLights_tan_ambient[i] = pointLights[i].ambient;
+		vs_out_pointLights_tan_diffuse[i] = pointLights[i].diffuse;
+		vs_out_pointLights_tan_specular[i] = pointLights[i].specular;
+	}
+
 	for (int i = 0; i < NR_SUNS; i++) {
 		vs_out_sun_tan_direction[i] = normalize(iTBN * sun[i].direction);
-		vs_out_sun_tan_ambient[i] =  sun[i].ambient;
-		vs_out_sun_tan_diffuse[i] =  sun[i].diffuse;
+		vs_out_sun_tan_ambient[i] = sun[i].ambient;
+		vs_out_sun_tan_diffuse[i] = sun[i].diffuse;
 		vs_out_sun_tan_specular[i] = sun[i].specular;
 		FragPosLightSpace[i] = lightSpaceMatrix[i] * vec4(FragPos, 1.0f);
 	}
 
 
-	for (int i = 0; i < NR_POINT_LIGHTS; i++)
-	{
-		vs_out_pointLights_tan_position[i] = iTBN *pointLights[i].position;
-		vs_out_pointLights_tan_position_world[i] = pointLights[i].position;
-		vs_out_pointLights_tan_constant[i] =       pointLights[i].constant;
-		vs_out_pointLights_tan_linear[i] =         pointLights[i].linear;
-		vs_out_pointLights_tan_quadratic[i] =      pointLights[i].quadratic;
-		vs_out_pointLights_tan_ambient[i] =        pointLights[i].ambient;
-		vs_out_pointLights_tan_diffuse[i] =        pointLights[i].diffuse;
-		vs_out_pointLights_tan_specular[i] =       pointLights[i].specular;
-	}
-
 };
 
 #shader fragment
 #version 330 core
-
-#define in1 -1
-#define i0 0
-#define i1 1
-#define i2 2
-#define i3 3
-#define i4 4
-#define i5 5
-#define i6 6
-#define i7 7
-#define i8 8
 
 struct Material {
 	sampler2D diffuse;
@@ -137,6 +150,20 @@ struct Material {
 	float shininess;
 };
 
+struct FlashLight {
+	vec3 position;
+	vec3 direction;
+	float cutoff;
+	float outerCutoff;
+
+	float constant;
+	float linear;
+	float quadratic;
+
+	vec3 ambient;
+	vec3 diffuse;
+	vec3 specular;
+};
 
 struct PointLight {
 	vec3 position;
@@ -183,6 +210,27 @@ uniform samplerCube cubeDepthMap[NR_POINT_LIGHTS]; // omnidir shadows
 
 
 
+in vec3  vs_out_pointLights_tan_position[NR_POINT_LIGHTS];
+in vec3  vs_out_pointLights_tan_position_world[NR_POINT_LIGHTS];
+in float vs_out_pointLights_tan_constant[NR_POINT_LIGHTS];
+in float vs_out_pointLights_tan_linear[NR_POINT_LIGHTS];
+in float vs_out_pointLights_tan_quadratic[NR_POINT_LIGHTS];
+in vec3  vs_out_pointLights_tan_ambient[NR_POINT_LIGHTS];
+in vec3  vs_out_pointLights_tan_diffuse[NR_POINT_LIGHTS];
+in vec3  vs_out_pointLights_tan_specular[NR_POINT_LIGHTS];
+
+in vec3 vs_out_sun_tan_direction[NR_SUNS];
+in vec3 vs_out_sun_tan_ambient[NR_SUNS];
+in vec3 vs_out_sun_tan_diffuse[NR_SUNS];
+in vec3 vs_out_sun_tan_specular[NR_SUNS];
+
+//in VS_OUT{
+//	FlashLight flashLight_tan;
+//	PointLight pointLights_tan[NR_POINT_LIGHTS];
+//	Sun sun_tan[NR_SUNS];
+//} fs_in;
+
+
 vec3 calc_pointlight(PointLight light, vec3 FragPos, vec3 viewDir, vec3 norm)
 {
 
@@ -219,10 +267,10 @@ vec3 calc_pointlight(PointLight light, vec3 FragPos, vec3 viewDir, vec3 norm)
 //);
 vec3 sampleOffsetDirections[9] = vec3[]
 (
-	vec3(0, 0, 0), 
+	vec3(0, 0, 0),
 	vec3(1, 1, 1), vec3(1, 1, -1), vec3(1, -1, 1), vec3(1, -1, -1),
 	vec3(-1, 1, 1), vec3(-1, 1, -1), vec3(-1, -1, 1), vec3(-1, -1, -1)
-);
+	);
 
 
 float OmniShadowCalculation(vec3 lightPosOmni, vec3 fragPos, vec3 cameraPos_world, float bias, samplerCube cubeDepthMap)
@@ -236,62 +284,12 @@ float OmniShadowCalculation(vec3 lightPosOmni, vec3 fragPos, vec3 cameraPos_worl
 	float diskRadius = (1.0 + (viewDistance / farPlane)) / 25.0;
 	for (int i = 0; i < samples; ++i)
 	{
-		if (i==i0) {
-			float closestDepth = texture(cubeDepthMap, fragToLight + sampleOffsetDirections[i0] * diskRadius).r;
-			closestDepth *= farPlane;   // Undo mapping [0;1]
-			if (currentDepth - bias > closestDepth)
-				shadow += 1.0;
-		}
-		if (i == i1) {
-			float closestDepth = texture(cubeDepthMap, fragToLight + sampleOffsetDirections[i1] * diskRadius).r;
-			closestDepth *= farPlane;   // Undo mapping [0;1]
-			if (currentDepth - bias > closestDepth)
-				shadow += 1.0;
-		}
-		if (i == i2) {
-			float closestDepth = texture(cubeDepthMap, fragToLight + sampleOffsetDirections[i2] * diskRadius).r;
-			closestDepth *= farPlane;   // Undo mapping [0;1]
-			if (currentDepth - bias > closestDepth)
-				shadow += 1.0;
-		}
-		if (i == i3) {
-			float closestDepth = texture(cubeDepthMap, fragToLight + sampleOffsetDirections[i3] * diskRadius).r;
-			closestDepth *= farPlane;   // Undo mapping [0;1]
-			if (currentDepth - bias > closestDepth)
-				shadow += 1.0;
-		}
-		if (i == i4) {
-			float closestDepth = texture(cubeDepthMap, fragToLight + sampleOffsetDirections[i4] * diskRadius).r;
-			closestDepth *= farPlane;   // Undo mapping [0;1]
-			if (currentDepth - bias > closestDepth)
-				shadow += 1.0;
-		}
-		if (i == i5) {
-			float closestDepth = texture(cubeDepthMap, fragToLight + sampleOffsetDirections[i5] * diskRadius).r;
-			closestDepth *= farPlane;   // Undo mapping [0;1]
-			if (currentDepth - bias > closestDepth)
-				shadow += 1.0;
-		}
-		if (i == i6) {
-			float closestDepth = texture(cubeDepthMap, fragToLight + sampleOffsetDirections[i6] * diskRadius).r;
-			closestDepth *= farPlane;   // Undo mapping [0;1]
-			if (currentDepth - bias > closestDepth)
-				shadow += 1.0;
-		}
-		if (i == i7) {
-			float closestDepth = texture(cubeDepthMap, fragToLight + sampleOffsetDirections[i7] * diskRadius).r;
-			closestDepth *= farPlane;   // Undo mapping [0;1]
-			if (currentDepth - bias > closestDepth)
-				shadow += 1.0;
-		}
-		if (i == i8) {
-			float closestDepth = texture(cubeDepthMap, fragToLight + sampleOffsetDirections[i8] * diskRadius).r;
-			closestDepth *= farPlane;   // Undo mapping [0;1]
-			if (currentDepth - bias > closestDepth)
-				shadow += 1.0;
-		}
+		float closestDepth = texture(cubeDepthMap, fragToLight + sampleOffsetDirections[i] * diskRadius).r;
+		closestDepth *= farPlane;   // Undo mapping [0;1]
+		if (currentDepth - bias > closestDepth)
+			shadow += 1.0;
 	}
-	
+
 
 	shadow /= float(samples);
 	return shadow;
@@ -325,6 +323,36 @@ vec3 calc_pointlight_wshadow(PointLight light, vec3 FragPos_tan, vec3 viewDir, v
 	return result;
 }
 
+vec3 calc_flashlight(FlashLight light, vec3 FragPos, vec3 viewDir, vec3 norm)
+{
+
+	vec3 lightDir = normalize(light.position - FragPos);
+
+	// diffuse
+	float diff = max(dot(norm, lightDir), 0.0);
+	// specular
+	//vec3 reflectDir = normalize(reflect(-lightDir, norm));
+	//float spec = pow(max(dot(viewDir, reflectDir), 0.0), material.shininess);	
+	vec3 halfwayDir = normalize(lightDir + viewDir);
+	float spec = pow(max(dot(halfwayDir, norm), 0.0), material.shininess);
+
+	// all
+	vec3 ambient = light.ambient  * vec3(texture(material.diffuse, TexCoords));
+	vec3 diffuse = light.diffuse  * (diff * vec3(texture(material.diffuse, TexCoords)));
+	vec3 specular = light.specular * (spec * vec3(texture(material.specular, TexCoords)));
+
+	// compute intensity 
+	float theta = dot(-lightDir, normalize(light.direction));
+	float epsilon = light.cutoff - light.outerCutoff;
+	float intensity = clamp((theta - light.outerCutoff) / epsilon, 0.0, 1.0);
+	// compute attenuation
+	float distance = length(light.position - FragPos);
+	float attenuation = 1.0f / (light.constant + light.linear * distance + light.quadratic * distance * distance);
+	// final result
+	vec3 result = attenuation * (ambient + intensity * (diffuse + specular));
+
+	return result;
+}
 
 float ShadowCalculation(vec4 FragPosLightSpace, float shadowBias, sampler2D shadowTexture)
 {
@@ -351,43 +379,8 @@ float ShadowCalculation(vec4 FragPosLightSpace, float shadowBias, sampler2D shad
 		{
 			for (int y = -1; y <= 1; y++)
 			{
-				if (x == in1 && y == in1) {
-					float temp = texture(shadowTexture, projCoords.xy + vec2(in1, in1) * texelSize).r;
-					shadow += currentDepth - shadowBias > temp ? 1.0 : 0.0;
-				}
-				if (x == in1 && y == i0) {
-					float temp = texture(shadowTexture, projCoords.xy + vec2(in1, i0) * texelSize).r;
-					shadow += currentDepth - shadowBias > temp ? 1.0 : 0.0;
-				}
-				if (x == in1 && y == i1) {
-					float temp = texture(shadowTexture, projCoords.xy + vec2(in1, i1) * texelSize).r;
-					shadow += currentDepth - shadowBias > temp ? 1.0 : 0.0;
-				}
-				if (x == i0 && y == in1) {
-					float temp = texture(shadowTexture, projCoords.xy + vec2(i0, in1) * texelSize).r;
-					shadow += currentDepth - shadowBias > temp ? 1.0 : 0.0;
-				}
-				if (x == i0 && y == i0) {
-					float temp = texture(shadowTexture, projCoords.xy + vec2(i0, i0) * texelSize).r;
-					shadow += currentDepth - shadowBias > temp ? 1.0 : 0.0;
-				}
-				if (x == i0 && y == i1) {
-					float temp = texture(shadowTexture, projCoords.xy + vec2(i0, i1) * texelSize).r;
-					shadow += currentDepth - shadowBias > temp ? 1.0 : 0.0;
-				}
-				if (x == i1 && y == in1) {
-					float temp = texture(shadowTexture, projCoords.xy + vec2(i1, in1) * texelSize).r;
-					shadow += currentDepth - shadowBias > temp ? 1.0 : 0.0;
-				}
-				if (x == i1 && y == i0) {
-					float temp = texture(shadowTexture, projCoords.xy + vec2(i1, i0) * texelSize).r;
-					shadow += currentDepth - shadowBias > temp ? 1.0 : 0.0;
-				}
-				if (x == i1 && y == i1) {
-					float temp = texture(shadowTexture, projCoords.xy + vec2(i1, i1) * texelSize).r;
-					shadow += currentDepth - shadowBias > temp ? 1.0 : 0.0;
-				}
-
+				float temp = texture(shadowTexture, projCoords.xy + vec2(x, y) * texelSize).r;
+				shadow += currentDepth - shadowBias > temp ? 1.0 : 0.0;
 			}
 		}
 		shadow /= 9.0;
@@ -416,73 +409,76 @@ vec3 calc_dirlight(Sun light, vec3 viewDir, vec3 norm, vec4 FragPosLightSpace, f
 
 	float shadow = ShadowCalculation(FragPosLightSpace, shadowBias, shadowTexture);
 
-	return (ambient + (1.0 - shadow) * (diffuse + specular) );
+	return (ambient + (1.0 - shadow) * (diffuse + specular));
 
 }
 
 
-
-
-in vec3  vs_out_pointLights_tan_position[NR_POINT_LIGHTS];
-in vec3  vs_out_pointLights_tan_position_world[NR_POINT_LIGHTS];
-in float vs_out_pointLights_tan_constant[NR_POINT_LIGHTS];
-in float vs_out_pointLights_tan_linear[NR_POINT_LIGHTS];
-in float vs_out_pointLights_tan_quadratic[NR_POINT_LIGHTS];
-in vec3  vs_out_pointLights_tan_ambient[NR_POINT_LIGHTS];
-in vec3  vs_out_pointLights_tan_diffuse[NR_POINT_LIGHTS];
-in vec3  vs_out_pointLights_tan_specular[NR_POINT_LIGHTS];
-
-in vec3 vs_out_sun_tan_direction[NR_SUNS];
-in vec3 vs_out_sun_tan_ambient[NR_SUNS];
-in vec3 vs_out_sun_tan_diffuse[NR_SUNS];
-in vec3 vs_out_sun_tan_specular[NR_SUNS];
-
 void main()
 {
 
+	Sun vs_out_sun_tan[NR_SUNS];
 	PointLight vs_out_pointLights_tan[NR_POINT_LIGHTS];
-	for (int i = 0; i < 1; i++)
+
+	for (int i = 0; i < NR_SUNS; i++)
 	{
-		vs_out_pointLights_tan[i].position = vs_out_pointLights_tan_position[i];
-		vs_out_pointLights_tan[i].position_world = vs_out_pointLights_tan_position_world[i];
-		vs_out_pointLights_tan[i].constant = vs_out_pointLights_tan_constant[i];
-		vs_out_pointLights_tan[i].linear = vs_out_pointLights_tan_linear[i];
-		vs_out_pointLights_tan[i].quadratic = vs_out_pointLights_tan_quadratic[i];
-		vs_out_pointLights_tan[i].ambient = vs_out_pointLights_tan_ambient[i];
-		vs_out_pointLights_tan[i].diffuse = vs_out_pointLights_tan_diffuse[i];
-		vs_out_pointLights_tan[i].specular = vs_out_pointLights_tan_specular[i];
+		vs_out_sun_tan[i].direction = vs_out_sun_tan_direction[i];
+		vs_out_sun_tan[i].ambient = vs_out_sun_tan_ambient[i];
+		vs_out_sun_tan[i].diffuse = vs_out_sun_tan_diffuse[i];
+		vs_out_sun_tan[i].specular = vs_out_sun_tan_specular[i];
+	}
+	// not sure why, but "unrolling" the loop here is needed on some machines
+	for (int i = 0; i < NR_POINT_LIGHTS; i++)
+	{
+		if (i == 0)
+		{
+			vs_out_pointLights_tan[0].position = vs_out_pointLights_tan_position[0];
+			vs_out_pointLights_tan[0].position_world = vs_out_pointLights_tan_position_world[0];
+			vs_out_pointLights_tan[0].constant = vs_out_pointLights_tan_constant[0];
+			vs_out_pointLights_tan[0].linear = vs_out_pointLights_tan_linear[0];
+			vs_out_pointLights_tan[0].quadratic = vs_out_pointLights_tan_quadratic[0];
+			vs_out_pointLights_tan[0].ambient = vs_out_pointLights_tan_ambient[0];
+			vs_out_pointLights_tan[0].diffuse = vs_out_pointLights_tan_diffuse[0];
+			vs_out_pointLights_tan[0].specular = vs_out_pointLights_tan_specular[0];
+		}
 	}
 
-	Sun vs_out_sun_tan[NR_SUNS];
-	vs_out_sun_tan[0].direction = vs_out_sun_tan_direction[0];
-	vs_out_sun_tan[0].ambient   = vs_out_sun_tan_ambient[0];
-	vs_out_sun_tan[0].diffuse   = vs_out_sun_tan_diffuse[0];
-	vs_out_sun_tan[0].specular  = vs_out_sun_tan_specular[0];
-	
 	//before normalMap //
 	vec3 norm = texture(material.normal, TexCoords).rgb;
 	norm = normalize(norm * 2.0 - 1.0);
-	
+
 	vec3 viewDir_tan = normalize(cameraPos_tan - FragPos_tan);
-	
+
 	vec3 result = vec3(0.0f, 0.0f, 0.0f);
-	
+
 	// flashlights
-	//result += calc_flashlight(fs_in.flashLight_tan, FragPos_tan, viewDir_tan, norm);
-	
+	//result += calc_flashlight(vs_out_flashLight_tan, FragPos_tan, viewDir_tan, norm);
+
 	// dirlight
-	//for (int i = 0; i < NR_SUNS; i++)
-	//{
-		float shadowBias = max(0.002 * (1.0 - dot(norm, vs_out_sun_tan[i0].direction)), 0.002);
-		result += calc_dirlight(vs_out_sun_tan[i0], viewDir_tan, norm, FragPosLightSpace[i0], shadowBias, shadowMap[i0]);
-	//}
-	
-	
-	//for (int i = 0; i < NR_POINT_LIGHTS; i++)
-	//{
+	for (int i = 0; i < NR_SUNS; i++)
+	{
+		float shadowBias = max(0.002 * (1.0 - dot(norm, vs_out_sun_tan[i].direction)), 0.002);
+		result += calc_dirlight(vs_out_sun_tan[i], viewDir_tan, norm, FragPosLightSpace[i], shadowBias, shadowMap[i]);
+	}
+
+
+	for (int i = 0; i < NR_POINT_LIGHTS; i++)
+	{
 		float bias = 0.1;
-		result += calc_pointlight_wshadow(vs_out_pointLights_tan[i0], FragPos_tan, viewDir_tan, norm, bias, FragPos, cameraPos_world, cubeDepthMap[i0]);
-	//}
+		result += calc_pointlight_wshadow(vs_out_pointLights_tan[i], FragPos_tan, viewDir_tan, norm, bias, FragPos, cameraPos_world, cubeDepthMap[i]);
+	}
 
 	color = vec4(result, 1.0);
+	//// Tone mapping
+	//const float exposure = 0.5;	
+	//const float gamma = 2.2;
+	//
+	//// Exposure tone mapping
+	//vec3 mapped = vec3(1.0) - exp(-result * exposure);
+	//
+	//
+	//// Gamma correction 
+	//mapped = pow(mapped, vec3(1.0 / gamma));
+	//color = vec4(mapped, 1.0);
+
 };

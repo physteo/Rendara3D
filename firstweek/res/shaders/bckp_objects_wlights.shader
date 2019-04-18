@@ -67,25 +67,11 @@ out vec3 FragPos_tan;
 out vec2 TexCoords;
 
 
-out vec3  vs_out_pointLights_tan_position[NR_POINT_LIGHTS];
-out vec3  vs_out_pointLights_tan_position_world[NR_POINT_LIGHTS];
-out float vs_out_pointLights_tan_constant[NR_POINT_LIGHTS];
-out float vs_out_pointLights_tan_linear[NR_POINT_LIGHTS];
-out float vs_out_pointLights_tan_quadratic[NR_POINT_LIGHTS];
-out vec3  vs_out_pointLights_tan_ambient[NR_POINT_LIGHTS];
-out vec3  vs_out_pointLights_tan_diffuse[NR_POINT_LIGHTS];
-out vec3  vs_out_pointLights_tan_specular[NR_POINT_LIGHTS];
-
-out vec3 vs_out_sun_tan_direction[NR_SUNS];
-out vec3 vs_out_sun_tan_ambient[NR_SUNS];
-out vec3 vs_out_sun_tan_diffuse[NR_SUNS];
-out vec3 vs_out_sun_tan_specular[NR_SUNS];
-
-//lol//out VS_OUT{
-//lol//	FlashLight flashLight_tan;
-//lol//	PointLight pointLights_tan[NR_POINT_LIGHTS];
-//lol//	Sun sun_tan[NR_SUNS];
-//lol//} vs_out;
+out VS_OUT{
+	FlashLight flashLight_tan;
+	PointLight pointLights_tan[NR_POINT_LIGHTS];
+	Sun sun_tan[NR_SUNS];
+} vs_out;
 
 void main()
 {
@@ -104,39 +90,40 @@ void main()
 	cameraPos_tan = iTBN * cameraPos;
 
 
-	//vs_out.flashLight_tan.position = iTBN * flashLight.position;
-	//vs_out.flashLight_tan.direction = normalize(iTBN * flashLight.direction);
-	//vs_out.flashLight_tan.cutoff = flashLight.cutoff;
-	//vs_out.flashLight_tan.outerCutoff = flashLight.outerCutoff;
-	//vs_out.flashLight_tan.constant = flashLight.constant;
-	//vs_out.flashLight_tan.linear = flashLight.linear;
-	//vs_out.flashLight_tan.quadratic = flashLight.quadratic;
-	//vs_out.flashLight_tan.ambient = flashLight.ambient;
-	//vs_out.flashLight_tan.diffuse = flashLight.diffuse;
-	//vs_out.flashLight_tan.specular = flashLight.specular;
+	vs_out.flashLight_tan.position = iTBN * flashLight.position;
+	vs_out.flashLight_tan.direction = normalize(iTBN * flashLight.direction);
+	vs_out.flashLight_tan.cutoff = flashLight.cutoff;
+	vs_out.flashLight_tan.outerCutoff = flashLight.outerCutoff;
+	vs_out.flashLight_tan.constant = flashLight.constant;
+	vs_out.flashLight_tan.linear = flashLight.linear;
+	vs_out.flashLight_tan.quadratic = flashLight.quadratic;
+	vs_out.flashLight_tan.ambient = flashLight.ambient;
+	vs_out.flashLight_tan.diffuse = flashLight.diffuse;
+	vs_out.flashLight_tan.specular = flashLight.specular;
 
+
+	for (int i = 0; i < NR_SUNS; i++) {
+		vs_out.sun_tan[i].direction = normalize(iTBN * sun[i].direction);
+		vs_out.sun_tan[i].ambient = sun[i].ambient;
+		vs_out.sun_tan[i].diffuse = sun[i].diffuse;
+		vs_out.sun_tan[i].specular = sun[i].specular;
+		FragPosLightSpace[i] = lightSpaceMatrix[i] * vec4(FragPos, 1.0f);
+
+	}
 
 
 	for (int i = 0; i < NR_POINT_LIGHTS; i++)
 	{
-		vs_out_pointLights_tan_position[i] = iTBN * pointLights[i].position;
-		vs_out_pointLights_tan_position_world[i] = pointLights[i].position;
-		vs_out_pointLights_tan_constant[i] = pointLights[i].constant;
-		vs_out_pointLights_tan_linear[i] = pointLights[i].linear;
-		vs_out_pointLights_tan_quadratic[i] = pointLights[i].quadratic;
-		vs_out_pointLights_tan_ambient[i] = pointLights[i].ambient;
-		vs_out_pointLights_tan_diffuse[i] = pointLights[i].diffuse;
-		vs_out_pointLights_tan_specular[i] = pointLights[i].specular;
-	}
+		vs_out.pointLights_tan[i].position = iTBN * pointLights[i].position;
+		vs_out.pointLights_tan[i].position_world = pointLights[i].position;
 
-	for (int i = 0; i < NR_SUNS; i++) {
-		vs_out_sun_tan_direction[i] = normalize(iTBN * sun[i].direction);
-		vs_out_sun_tan_ambient[i] = sun[i].ambient;
-		vs_out_sun_tan_diffuse[i] = sun[i].diffuse;
-		vs_out_sun_tan_specular[i] = sun[i].specular;
-		FragPosLightSpace[i] = lightSpaceMatrix[i] * vec4(FragPos, 1.0f);
+		vs_out.pointLights_tan[i].constant = pointLights[i].constant;
+		vs_out.pointLights_tan[i].linear = pointLights[i].linear;
+		vs_out.pointLights_tan[i].quadratic = pointLights[i].quadratic;
+		vs_out.pointLights_tan[i].ambient = pointLights[i].ambient;
+		vs_out.pointLights_tan[i].diffuse = pointLights[i].diffuse;
+		vs_out.pointLights_tan[i].specular = pointLights[i].specular;
 	}
-
 
 };
 
@@ -208,27 +195,11 @@ in vec4 FragPosLightSpace[NR_SUNS]; // shadows
 uniform float farPlane;  // omnidir shadows
 uniform samplerCube cubeDepthMap[NR_POINT_LIGHTS]; // omnidir shadows
 
-
-
-in vec3  vs_out_pointLights_tan_position[NR_POINT_LIGHTS];
-in vec3  vs_out_pointLights_tan_position_world[NR_POINT_LIGHTS];
-in float vs_out_pointLights_tan_constant[NR_POINT_LIGHTS];
-in float vs_out_pointLights_tan_linear[NR_POINT_LIGHTS];
-in float vs_out_pointLights_tan_quadratic[NR_POINT_LIGHTS];
-in vec3  vs_out_pointLights_tan_ambient[NR_POINT_LIGHTS];
-in vec3  vs_out_pointLights_tan_diffuse[NR_POINT_LIGHTS];
-in vec3  vs_out_pointLights_tan_specular[NR_POINT_LIGHTS];
-
-in vec3 vs_out_sun_tan_direction[NR_SUNS];
-in vec3 vs_out_sun_tan_ambient[NR_SUNS];
-in vec3 vs_out_sun_tan_diffuse[NR_SUNS];
-in vec3 vs_out_sun_tan_specular[NR_SUNS];
-
-//in VS_OUT{
-//	FlashLight flashLight_tan;
-//	PointLight pointLights_tan[NR_POINT_LIGHTS];
-//	Sun sun_tan[NR_SUNS];
-//} fs_in;
+in VS_OUT{
+	FlashLight flashLight_tan;
+	PointLight pointLights_tan[NR_POINT_LIGHTS];
+	Sun sun_tan[NR_SUNS];
+} fs_in;
 
 
 vec3 calc_pointlight(PointLight light, vec3 FragPos, vec3 viewDir, vec3 norm)
@@ -416,33 +387,6 @@ vec3 calc_dirlight(Sun light, vec3 viewDir, vec3 norm, vec4 FragPosLightSpace, f
 
 void main()
 {
-
-	Sun vs_out_sun_tan[NR_SUNS];
-	PointLight vs_out_pointLights_tan[NR_POINT_LIGHTS];
-
-	for (int i = 0; i < NR_SUNS; i++)
-	{
-		vs_out_sun_tan[i].direction = vs_out_sun_tan_direction[i];
-		vs_out_sun_tan[i].ambient = vs_out_sun_tan_ambient[i];
-		vs_out_sun_tan[i].diffuse = vs_out_sun_tan_diffuse[i];
-		vs_out_sun_tan[i].specular = vs_out_sun_tan_specular[i];
-	}
-	// not sure why, but "unrolling" the loop here is needed on some machines
-	for (int i = 0; i < NR_POINT_LIGHTS; i++)
-	{
-		if (i == 0)
-		{
-			vs_out_pointLights_tan[0].position = vs_out_pointLights_tan_position[0];
-			vs_out_pointLights_tan[0].position_world = vs_out_pointLights_tan_position_world[0];
-			vs_out_pointLights_tan[0].constant = vs_out_pointLights_tan_constant[0];
-			vs_out_pointLights_tan[0].linear = vs_out_pointLights_tan_linear[0];
-			vs_out_pointLights_tan[0].quadratic = vs_out_pointLights_tan_quadratic[0];
-			vs_out_pointLights_tan[0].ambient = vs_out_pointLights_tan_ambient[0];
-			vs_out_pointLights_tan[0].diffuse = vs_out_pointLights_tan_diffuse[0];
-			vs_out_pointLights_tan[0].specular = vs_out_pointLights_tan_specular[0];
-		}
-	}
-
 	//before normalMap //
 	vec3 norm = texture(material.normal, TexCoords).rgb;
 	norm = normalize(norm * 2.0 - 1.0);
@@ -452,20 +396,20 @@ void main()
 	vec3 result = vec3(0.0f, 0.0f, 0.0f);
 
 	// flashlights
-	//result += calc_flashlight(vs_out_flashLight_tan, FragPos_tan, viewDir_tan, norm);
+	//result += calc_flashlight(fs_in.flashLight_tan, FragPos_tan, viewDir_tan, norm);
 
 	// dirlight
 	for (int i = 0; i < NR_SUNS; i++)
 	{
-		float shadowBias = max(0.002 * (1.0 - dot(norm, vs_out_sun_tan[i].direction)), 0.002);
-		result += calc_dirlight(vs_out_sun_tan[i], viewDir_tan, norm, FragPosLightSpace[i], shadowBias, shadowMap[i]);
+		float shadowBias = max(0.002 * (1.0 - dot(norm, fs_in.sun_tan[i].direction)), 0.002);
+		result += calc_dirlight(fs_in.sun_tan[i], viewDir_tan, norm, FragPosLightSpace[i], shadowBias, shadowMap[i]);
 	}
 
 
 	for (int i = 0; i < NR_POINT_LIGHTS; i++)
 	{
 		float bias = 0.1;
-		result += calc_pointlight_wshadow(vs_out_pointLights_tan[i], FragPos_tan, viewDir_tan, norm, bias, FragPos, cameraPos_world, cubeDepthMap[i]);
+		result += calc_pointlight_wshadow(fs_in.pointLights_tan[i], FragPos_tan, viewDir_tan, norm, bias, FragPos, cameraPos_world, cubeDepthMap[i]);
 	}
 
 	color = vec4(result, 1.0);
@@ -482,3 +426,4 @@ void main()
 	//color = vec4(mapped, 1.0);
 
 };
+

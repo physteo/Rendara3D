@@ -1,20 +1,20 @@
 #pragma once
 
-#include "../Model.h"
-#include "../ObjectPool.h"
+#include "../Model/Model.h"
+#include "../utils/SwapArray.h"
 
 
-//! Class that owns a collection of objects that will be drawn (identical) using instancing.
+//! Class that owns a collection of objects that will be drawn identically but at different positions using instancing.
 template <class HasTransform>
 class InstanceSet
 {
 	size_t m_numberOfMeshes;
 	Model* m_model;
-	//memory::ObjectPool< std::pair<  std::pair<glm::mat4, glm::mat4>, HasTransform>  >  instances;
+	//memory::SwapArray< std::pair<  std::pair<glm::mat4, glm::mat4>, HasTransform>  >  instances;
 
-	memory::ObjectPool<HasTransform>    m_objects;
-	memory::ObjectPool<glm::mat4>       m_modelMatrices;
-	memory::ObjectPool<glm::mat4>       m_normalMatrices;
+	memory::SwapArray<HasTransform>    m_objects;
+	memory::SwapArray<glm::mat4>       m_modelMatrices;
+	memory::SwapArray<glm::mat4>       m_normalMatrices;
 
 
 public:
@@ -133,7 +133,7 @@ private:
 
 		glm::mat4 modelMatrix{ 1.0 };
 		modelMatrix = glm::translate(modelMatrix, transform.position);
-		modelMatrix = glm::rotate(modelMatrix, glm::radians(0.0f), glm::vec3{ 0.0f,0.0f,1.0f });
+		//modelMatrix = glm::rotate(modelMatrix, glm::radians(0.0f), glm::vec3{ 0.0f,0.0f,1.0f });
 		modelMatrix = glm::rotate(modelMatrix, glm::radians(transform.rotation.z), glm::vec3{ 0.0f,0.0f,1.0f });
 		modelMatrix = glm::rotate(modelMatrix, glm::radians(transform.rotation.y), glm::vec3{ 0.0f,1.0f,0.0f });
 		modelMatrix = glm::rotate(modelMatrix, glm::radians(transform.rotation.x), glm::vec3{ 1.0f,0.0f,0.0f });
@@ -147,15 +147,15 @@ private:
 
 };
 
-//! Class that owns a collection of Quads that will be drawn (each with different color) using instancing.
+//! Class that owns a collection of Quads that will be drawn (each with different color and position) using instancing.
 template <class HasTransformHasColor>
 class InstanceSetQuads
 {
 	Model* m_model;
 
-	memory::ObjectPool<HasTransformHasColor>    m_objects;
-	memory::ObjectPool<glm::mat4>       m_modelMatrices;
-	memory::ObjectPool<glm::vec4>       m_colors;
+	memory::SwapArray<HasTransformHasColor>    m_objects;
+	memory::SwapArray<glm::mat4>       m_modelMatrices;
+	memory::SwapArray<glm::vec4>       m_colors;
 
 
 public:
@@ -172,40 +172,40 @@ public:
 
 			// prepare the attributes and then draw
 			unsigned int bufferModelMatrix;
-			glGenBuffers(1, &bufferModelMatrix);
-			glBindBuffer(GL_ARRAY_BUFFER, bufferModelMatrix);
-			glBufferData(GL_ARRAY_BUFFER, m_objects.size() * sizeof(glm::mat4), m_modelMatrices.getPointerToFirst(), GL_STATIC_DRAW);
+			GLCall(glGenBuffers(1, &bufferModelMatrix));
+			GLCall(glBindBuffer(GL_ARRAY_BUFFER, bufferModelMatrix));
+			GLCall(glBufferData(GL_ARRAY_BUFFER, m_objects.size() * sizeof(glm::mat4), m_modelMatrices.getPointerToFirst(), GL_STATIC_DRAW));
 
 			// bind vao and enable vertex attributes (specifying the layout)
 			mesh->bindVao();
-			glEnableVertexAttribArray(4);
-			glVertexAttribPointer(4, 4, GL_FLOAT, GL_FALSE, sizeof(glm::mat4), (void*)0);
-			glEnableVertexAttribArray(5);
-			glVertexAttribPointer(5, 4, GL_FLOAT, GL_FALSE, sizeof(glm::mat4), (void*)(sizeof(glm::vec4)));
-			glEnableVertexAttribArray(6);
-			glVertexAttribPointer(6, 4, GL_FLOAT, GL_FALSE, sizeof(glm::mat4), (void*)(2 * sizeof(glm::vec4)));
-			glEnableVertexAttribArray(7);
-			glVertexAttribPointer(7, 4, GL_FLOAT, GL_FALSE, sizeof(glm::mat4), (void*)(3 * sizeof(glm::vec4)));
+			GLCall(glEnableVertexAttribArray(4));
+			GLCall(glVertexAttribPointer(4, 4, GL_FLOAT, GL_FALSE, sizeof(glm::mat4), (void*)0));
+			GLCall(glEnableVertexAttribArray(5));
+			GLCall(glVertexAttribPointer(5, 4, GL_FLOAT, GL_FALSE, sizeof(glm::mat4), (void*)(sizeof(glm::vec4))));
+			GLCall(glEnableVertexAttribArray(6));
+			GLCall(glVertexAttribPointer(6, 4, GL_FLOAT, GL_FALSE, sizeof(glm::mat4), (void*)(2 * sizeof(glm::vec4))));
+			GLCall(glEnableVertexAttribArray(7));
+			GLCall(glVertexAttribPointer(7, 4, GL_FLOAT, GL_FALSE, sizeof(glm::mat4), (void*)(3 * sizeof(glm::vec4))));
 
-			glVertexAttribDivisor(4, 1);
-			glVertexAttribDivisor(5, 1);
-			glVertexAttribDivisor(6, 1);
-			glVertexAttribDivisor(7, 1);
+			GLCall(glVertexAttribDivisor(4, 1));
+			GLCall(glVertexAttribDivisor(5, 1));
+			GLCall(glVertexAttribDivisor(6, 1));
+			GLCall(glVertexAttribDivisor(7, 1));
 
 			unsigned int bufferColor;
-			glGenBuffers(1, &bufferColor);
-			glBindBuffer(GL_ARRAY_BUFFER, bufferColor);
-			glBufferData(GL_ARRAY_BUFFER, m_objects.size() * sizeof(glm::mat4), m_colors.getPointerToFirst(), GL_STATIC_DRAW);
+			GLCall(glGenBuffers(1, &bufferColor));
+			GLCall(glBindBuffer(GL_ARRAY_BUFFER, bufferColor));
+			GLCall(glBufferData(GL_ARRAY_BUFFER, m_objects.size() * sizeof(glm::mat4), m_colors.getPointerToFirst(), GL_STATIC_DRAW));
 
-			glEnableVertexAttribArray(8);
-			glVertexAttribPointer(8, 4, GL_FLOAT, GL_FALSE, sizeof(glm::vec4), (void*)0);
-			glVertexAttribDivisor(8, 1);
+			GLCall(glEnableVertexAttribArray(8));
+			GLCall(glVertexAttribPointer(8, 4, GL_FLOAT, GL_FALSE, sizeof(glm::vec4), (void*)0));
+			GLCall(glVertexAttribDivisor(8, 1));
 
-			glDrawElementsInstanced(GL_TRIANGLES, mesh->getIndices(), GL_UNSIGNED_INT, 0, m_objects.size());
+			GLCall(glDrawElementsInstanced(GL_TRIANGLES, mesh->getIndices(), GL_UNSIGNED_INT, 0, m_objects.size()));
 
-			glBindVertexArray(0);
-			glDeleteBuffers(1, &bufferModelMatrix);
-			glDeleteBuffers(1, &bufferColor);
+			GLCall(glBindVertexArray(0));
+			GLCall(glDeleteBuffers(1, &bufferModelMatrix));
+			GLCall(glDeleteBuffers(1, &bufferColor));
 
 		}
 

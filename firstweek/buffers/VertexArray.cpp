@@ -1,5 +1,36 @@
 #include "VertexArray.h"
 
+
+VertexArray::VertexArray(const std::vector<std::vector<float> >& attributes, const std::vector<unsigned int>& components, const std::vector<unsigned int>& indices)
+{
+	generate();
+	bind();
+	fillData(attributes, components);
+	setIbo(indices);
+	unbind();
+}
+
+VertexArray::~VertexArray()
+{
+	release();
+}
+
+VertexArray::VertexArray(VertexArray&& other)
+{
+	swapData(other);
+}
+
+VertexArray& VertexArray::operator=(VertexArray&& other)
+{
+	// check for self-assignment.
+	if (this != &other)
+	{
+		release();
+		swapData(other);
+	}
+	return *this;
+}
+
 void VertexArray::fillData(const std::vector<std::vector<float>>& attributes, const std::vector<unsigned int>& components)
 
 {
@@ -27,11 +58,8 @@ void VertexArray::fillData(const std::vector<std::vector<float>>& attributes, co
 	}
 
 	/* put data in the GPU */
-	m_vbo.generate();
-	m_vbo.bind();
-	m_vbo.setData(&data[0], sizeof(float) * data.size());
-
-
+	Buffer vbo{ GL_ARRAY_BUFFER, &data[0], sizeof(float) * data.size() };
+	m_vbo = std::move(vbo);
 
 	for (size_t i = 0; i < attributes.size(); i++)
 	{
@@ -46,18 +74,32 @@ void VertexArray::fillData(const std::vector<std::vector<float>>& attributes, co
 		GLCall(glVertexAttribPointer(i, components.at(i), GL_FLOAT, GL_FALSE, stride * sizeof(float), (void*)(offset * sizeof(float))));
 	}
 
-	m_vbo.unbind();
+	m_vbo.unbind(); // TODO: necessary?
 	unbind();
 }
 
 void VertexArray::setIbo(const std::vector<unsigned int>& indices)
 {
 	bind();
-	m_ibo.generate();
-	m_ibo.bind();
 
-	m_ibo.setData(&indices[0], indices.size() * sizeof(unsigned int));
+	Buffer ibo{ GL_ELEMENT_ARRAY_BUFFER, &indices[0], indices.size() * sizeof(unsigned int) };
+	m_ibo = std::move(ibo);
 
 	unbind();
-	m_ibo.unbind();
+	m_ibo.unbind(); // Note: need to first unbind the vao.
+
+}
+
+
+void VertexArray::swapData(VertexArray& other)
+{
+	m_id = other.m_id;
+	other.m_id = 0;
+	m_ibo = std::move(other.m_ibo);
+	m_vbo = std::move(other.m_vbo);
+}
+
+void VertexArray::release()
+{
+	GLCall(glDeleteVertexArrays(1, &m_id));
 }

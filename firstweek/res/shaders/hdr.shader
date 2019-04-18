@@ -22,7 +22,7 @@ uniform float exposure;
 
 void main()
 {
-	// TODO: URGENT	remove this if want hdr
+	// TODO: URGENT	comment next line if want hdr
 	//FragColor = vec4(texture(hdrBuffer, TexCoords).rgb, 1.0);
 
 	// TODO URGENT: activate all this if you want hdr, and comment out: glEnable(GL_FRAMEBUFFER_SRGB) in Window's constructor;

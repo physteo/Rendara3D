@@ -1,0 +1,9 @@
+
+
+1) Add Texture manager so that I dont have to do "reserve" at the beginning of the demos and hope the array doesnt get resized.
+(models keep a reference to each textures as a pointer. I should be an ID, or a linked list. Although linked list could lower performance)
+
+
+3) Write a general instanced renderer that takes all the objects it needs to draw at each frame and draw them. Now for each "type" of object
+I have an instancedSet object that draws them.
+

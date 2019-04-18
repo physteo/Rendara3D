@@ -1,44 +1,62 @@
 #include "ShadowCubeMap.h"
 
 
-void ShadowCubeMap::generate()
+ShadowCubeMap::~ShadowCubeMap()
 {
-	// create FBO
-	glGenFramebuffers(1, &m_frameBufferID);
+	release();
+}
 
-	// create cube map
-	glGenTextures(1, &m_textureID);
-	glBindTexture(GL_TEXTURE_CUBE_MAP, m_textureID);
+ShadowCubeMap::ShadowCubeMap(ShadowCubeMap&& other)
+{
+	swapData(other);
+}
+ShadowCubeMap& ShadowCubeMap::operator=(ShadowCubeMap&& other)
+{
+	// check for self-assignment.
+	if (this != &other)
+	{
+		release();
+		swapData(other);
+	}
+	return *this;
+}
+
+ShadowCubeMap::ShadowCubeMap(float width, float height) : m_width(width), m_height(height)
+{
+	// TODO: add cube maps to the engine
+	// create 3D texture
+	GLCall(glGenTextures(1, &m_3DtextureID));
+	GLCall(glBindTexture(GL_TEXTURE_CUBE_MAP, m_3DtextureID));
 	for (size_t i = 0; i < 6; i++)
 	{
-		glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, GL_DEPTH_COMPONENT,
-			m_width, m_height, 0, GL_DEPTH_COMPONENT, GL_FLOAT,
-			NULL);
+		GLCall(glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, GL_DEPTH_COMPONENT,
+			width, height, 0, GL_DEPTH_COMPONENT, GL_FLOAT,
+			NULL));
 	}
-	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
+	GLCall(glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_NEAREST));
+	GLCall(glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_NEAREST));
+	GLCall(glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE));
+	GLCall(glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE));
+	GLCall(glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE));
+
 	// attach cubemap to FBO
-	glBindFramebuffer(GL_FRAMEBUFFER, m_frameBufferID);
-	glFramebufferTexture(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, m_textureID, 0);
-	glDrawBuffer(GL_NONE);
-	glReadBuffer(GL_NONE);
-	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+	m_frameBuffer.bind();
+	glFramebufferTexture(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, m_3DtextureID, 0);
+	GLCall(glDrawBuffer(GL_NONE));  // TODO: necessary??
+	GLCall(glReadBuffer(GL_NONE));	// TODO: necessary??
+	m_frameBuffer.unbind();
 }
 
 void ShadowCubeMap::clearShadows()
 {
-	glBindFramebuffer(GL_FRAMEBUFFER, m_frameBufferID);
-	glClear(GL_DEPTH_BUFFER_BIT); // modded
+	m_frameBuffer.bind();
+	glClear(GL_DEPTH_BUFFER_BIT); 
 }
 
 void ShadowCubeMap::startShadows(const Window& window, Shader& cubeDepthShader, const PointLight& pointLight)
 {
 	window.setViewPort(m_width, m_height);
-	glBindFramebuffer(GL_FRAMEBUFFER, m_frameBufferID);
-	// new //glClear(GL_DEPTH_BUFFER_BIT); // modded
+	m_frameBuffer.bind();
 	float aspect = (float)m_width / (float)m_height;
 
 	glm::vec3 lightPosition = pointLight.eye;
@@ -71,6 +89,34 @@ void ShadowCubeMap::stopShadows(const Window& window, Shader& shader)
 {
 	glEnable(GL_CULL_FACE);
 	shader.unbind();
-	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+	m_frameBuffer.unbind();
 	window.setViewPort(window.getWidth(), window.getHeight());
+}
+
+// Passes the farPlane and activates the cube texture
+void ShadowCubeMap::passUniforms(Shader& shader, const std::string& textureUniformName, const std::string& farPlaneUniformName)
+{
+	shader.setUniformValue(farPlaneUniformName, 20.0f);
+	shader.setTexture(GL_TEXTURE_CUBE_MAP, textureUniformName, m_3DtextureID);
+	//shader.setUniformValue("cubeDepthMap", textureSlot);
+	//glActiveTexture(GL_TEXTURE0 + textureSlot);
+	//glBindTexture(GL_TEXTURE_CUBE_MAP, m_textureID);
+}
+
+
+void ShadowCubeMap::release()
+{
+	GLCall(glDeleteTextures(1, &m_3DtextureID));
+}
+
+void ShadowCubeMap::swapData(ShadowCubeMap& other)
+{
+	m_width = other.m_width;
+	m_height = other.m_height;
+	m_3DtextureID = other.m_3DtextureID;
+	m_frameBuffer = std::move(other.m_frameBuffer);
+
+	other.m_width = 0;
+	other.m_height = 0;
+	other.m_3DtextureID = 0;
 }

@@ -1,14 +1,14 @@
 #pragma once
 #include "../Renderer/Transform.h"
 #include "../Renderer/Renderer.h"
-#include "../Model.h"
+#include "../Model/Model.h"
 
 
 
 class GameObject
 {
 public:
-	GameObject() : transform(), model(nullptr), renderer(nullptr) {}
+	GameObject() : transform(), model(nullptr) {}
 
 	unsigned int ID;
 
@@ -16,7 +16,6 @@ public:
 	Model* model;
 	// physics to add
 
-	Renderer* renderer;
 };
 
 
