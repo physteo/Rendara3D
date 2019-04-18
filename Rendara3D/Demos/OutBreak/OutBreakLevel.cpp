@@ -137,9 +137,9 @@ void OutBreakLevel::load(const std::vector<std::vector<int> >& layout)
 	// ball initialization
 	ball.radius = 0.25f;
 	ball.transform.scale  = glm::vec3{1.0f};
-	ball.transform.position = player.transform.position -4.0f * glm::vec3{ 1.0f,-0.0f,0.25f };
+	ball.transform.position = player.transform.position -2.0f * glm::vec3{ 1.0f,-0.0f,0.25f };
 	ball.transform.rotation = glm::vec3{ 0.0f, 0.0f, 0.0f };
-	ball.velocity = 2.0f * glm::vec3{ -3.0f, 0.0f, -3.0f };
+	ball.velocity = 2.0f * glm::vec3{ -2.5f, 0.0f, +2.5f };
 	ball.model = &ballModel;
 
 	// walls

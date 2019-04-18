@@ -6,7 +6,7 @@ ShadowsDemoLevel::ShadowsDemoLevel(const Window& window, std::vector<Texture>& l
 	m_state = GameState::GAME_ACTIVE;
 
 	/* camera and view */
-	camera = Camera{ glm::vec3{-3.0f, 3.0f, 3.0f}, glm::vec3{0.0f, 0.0f, 1.0f}, glm::vec3{0.0f, 1.0f, 0.0f} };
+	camera = Camera{ glm::vec3{3.0f, 3.0f, 3.0f}, glm::vec3{0.0f, 0.0f, 0.0f}, glm::vec3{0.0f, 1.0f, 0.0f} };
 	projection = glm::perspective(glm::radians(90.0f), (float)(window.getWidth() / window.getWidth()), 0.1f, 50.0f);
 
 	/* models */
