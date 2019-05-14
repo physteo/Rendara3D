@@ -1,7 +1,8 @@
 #pragma once
 
 // stl
-#include <vector>
+//#include <vector>
+#include <map>
 #include <list>
 #include <memory>
 
@@ -23,8 +24,8 @@ public:
 	void execute();
 
 protected:
+	std::map<std::string, Texture>			m_loadedTextures;
 	std::list<std::unique_ptr<GameLevel> >  m_levels;
-	std::vector<Texture>					m_loadedTextures;
 	Window									m_window;
 
 	virtual void load() = 0;

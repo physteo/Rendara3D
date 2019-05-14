@@ -10,6 +10,6 @@ public:
 private:
 	void load() override
 	{
-		this->m_levels.push_back(std::make_unique<ShadowsDemoLevel>(ShadowsDemoLevel{ this->m_window, this->m_loadedTextures }));
+		m_levels.push_back(std::make_unique<ShadowsDemoLevel>(ShadowsDemoLevel{ this->m_window, this->m_loadedTextures }));
 	}
 };

@@ -28,7 +28,7 @@ void Model::draw(float scale, const glm::vec3& position, const glm::vec3& radian
 }
 
 
-void Model::loadModel(const std::string path, std::vector<Texture>* loadedTextures)
+void Model::loadModel(const std::string path, std::map<std::string, Texture>* loadedTextures)
 {
 	Assimp::Importer importer;
 	const aiScene* scene = importer.ReadFile(path, aiProcess_Triangulate | aiProcess_CalcTangentSpace | aiProcess_FlipUVs);
@@ -45,7 +45,7 @@ void Model::loadModel(const std::string path, std::vector<Texture>* loadedTextur
 	processNode(scene->mRootNode, scene, loadedTextures);
 }
 
-void Model::processNode(aiNode* node, const aiScene* scene, std::vector<Texture>* loadedTextures)
+void Model::processNode(const aiNode* node, const aiScene* scene, std::map<std::string, Texture>* loadedTextures)
 {
 	for (size_t i = 0; i < node->mNumMeshes; i++)
 	{
@@ -59,7 +59,7 @@ void Model::processNode(aiNode* node, const aiScene* scene, std::vector<Texture>
 	}
 }
 
-Mesh Model::processMesh(aiMesh* aimesh, const aiScene* scene, std::vector<Texture>* loadedTextures)
+Mesh Model::processMesh(const aiMesh* aimesh, const aiScene* scene, std::map<std::string, Texture>* loadedTextures)
 {
 	std::vector<Vertex> vertices;
 	std::vector<unsigned int> indices;
@@ -119,9 +119,9 @@ Mesh Model::processMesh(aiMesh* aimesh, const aiScene* scene, std::vector<Textur
 			}
 		}
 
-		diffuse  = loadMaterialTexture(aimaterial, aiTextureType_DIFFUSE,  Format::sRGBA, loadedTextures);
-		specular = loadMaterialTexture(aimaterial, aiTextureType_SPECULAR, Format::RGBA, loadedTextures);
-		normal   = loadMaterialTexture(aimaterial, aiTextureType_HEIGHT,   Format::RGBA, loadedTextures);
+		diffuse  = loadTextureFromMaterial(aimaterial, aiTextureType_DIFFUSE,  Format::sRGBA, loadedTextures);
+		specular = loadTextureFromMaterial(aimaterial, aiTextureType_SPECULAR, Format::RGBA, loadedTextures);
+		normal   = loadTextureFromMaterial(aimaterial, aiTextureType_HEIGHT,   Format::RGBA, loadedTextures);
 
 		if (diffuse == nullptr)
 		{
@@ -135,10 +135,14 @@ Mesh Model::processMesh(aiMesh* aimesh, const aiScene* scene, std::vector<Textur
 			std::string name_r = std::to_string((int)(255 * m_defaultColor[0]));
 			std::string name_g = std::to_string((int)(255 * m_defaultColor[1]));
 			std::string name_b = std::to_string((int)(255 * m_defaultColor[2]));
-			// create new texture (TODO: i need a texture manager :/, and here also I check if this color had already been created.)
-			Texture newTexture{ width, height,nrChannels, "nopath-RGB="+name_r+"-"+name_g+"-"+name_b, Format::sRGBA, color };
-			loadedTextures->push_back(std::move(newTexture));
-			diffuse = &(loadedTextures->back());
+			std::string newTextureName = "default-RGB=" + name_r + "-" + name_g + "-" + name_b;
+			auto alreadyLoaded = loadedTextures->find(newTextureName);
+			if (alreadyLoaded == loadedTextures->end())
+			{
+				Texture newTexture{ width, height,nrChannels, newTextureName, Format::sRGBA, color };
+				alreadyLoaded = loadedTextures->insert({ newTextureName, std::move(newTexture) }).first;
+			}
+			diffuse = &(alreadyLoaded->second);
 		}
 
 		if (specular == nullptr)
@@ -150,10 +154,14 @@ Mesh Model::processMesh(aiMesh* aimesh, const aiScene* scene, std::vector<Textur
 			color[0] = 0;
 			color[1] = 0;
 			color[2] = 0;
-			// create new texture (TODO: i need a texture manager :/, and here also I check if this color had already been created.)
-			Texture newTexture{ width, height,nrChannels, "nopath-specularmap", Format::RGBA, color };
-			loadedTextures->push_back(std::move(newTexture));
-			specular = &(loadedTextures->back());
+			std::string newTextureName = "default-specularmap";
+			auto alreadyLoaded = loadedTextures->find(newTextureName);
+			if (alreadyLoaded == loadedTextures->end())
+			{
+				Texture newTexture{ width, height,nrChannels, newTextureName, Format::RGBA, color };
+				alreadyLoaded = loadedTextures->insert({ newTextureName, std::move(newTexture) }).first;
+			}
+			specular = &(alreadyLoaded->second);
 		}
 
 		if (normal == nullptr)
@@ -166,10 +174,14 @@ Mesh Model::processMesh(aiMesh* aimesh, const aiScene* scene, std::vector<Textur
 			color[1] = 133;
 			color[2] = 255; // TODO: this does not work! You can see the bug by drawing (e.g.) a plane without a normal map just below a point light: only 
 							// half of the plane gets correct lighting
-			// create new texture (TODO: i need a texture manager :/,and here also I check if this color had already been created.)
-			Texture newTexture{ width, height,nrChannels, "nopath-normalmap", Format::RGBA, color };
-			loadedTextures->push_back(std::move(newTexture));
-			normal = &(loadedTextures->back());
+			std::string newTextureName = "default-normalmap";
+			auto alreadyLoaded = loadedTextures->find(newTextureName);
+			if (alreadyLoaded == loadedTextures->end())
+			{
+				Texture newTexture{ width, height,nrChannels, newTextureName, Format::RGBA, color };
+				alreadyLoaded = loadedTextures->insert({ newTextureName, std::move(newTexture) }).first;
+			}
+			normal = &(alreadyLoaded->second);
 			
 		}
 
@@ -183,7 +195,7 @@ Mesh Model::processMesh(aiMesh* aimesh, const aiScene* scene, std::vector<Textur
 	return newMesh;
 }
 
-Texture* Model::loadMaterialTexture(aiMaterial* mat, aiTextureType type, Format internalFormat, std::vector<Texture>* loadedTextures)
+Texture* Model::loadTextureFromMaterial(const aiMaterial* mat, aiTextureType type, Format internalFormat, std::map<std::string, Texture>* loadedTextures)
 {
 	if (mat->GetTextureCount(type)) {
 
@@ -202,24 +214,16 @@ Texture* Model::loadMaterialTexture(aiMaterial* mat, aiTextureType type, Format 
 
 		fullPath = (out.size() == 2) ? ".\\res\\" + out.at(1) : fullPath;
 
-		// if texture does not already exist, generate it
-		bool alreadyLoaded = false;
-		for (size_t i = 0; i < loadedTextures->size(); i++)
-		{
-			
-			if (std::strcmp(fullPath.c_str(), loadedTextures->at(i).getPath().c_str()) == 0)
-			{
-				// already loaded. return a copy of the texture (it copies only the path and the reference ID)
-				return &loadedTextures->at(i);
-			}
-		}
 
-		if (!alreadyLoaded)
+		auto alreadyLoaded = loadedTextures->find(fullPath);
+		if (alreadyLoaded == loadedTextures->end())
 		{
-			// add it to the vector of loaded textures and give the pointer to the input texture
-			loadedTextures->push_back(std::move(Texture{ fullPath, internalFormat }));
-			return &loadedTextures->back();
+			// load new texture
+			Texture newTexture{ fullPath, internalFormat };
+			alreadyLoaded = loadedTextures->insert({fullPath, std::move(newTexture) }).first;
 		}
+		
+		return &(alreadyLoaded->second);
 
 	}
 	else

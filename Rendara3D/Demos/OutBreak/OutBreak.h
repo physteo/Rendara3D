@@ -34,6 +34,6 @@ public:
 private:
 	Window window;
 	
-	std::vector<Texture> loadedTextures;
+	std::map<std::string, Texture> loadedTextures;
 	
 };

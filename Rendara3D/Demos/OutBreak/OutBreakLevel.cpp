@@ -2,7 +2,7 @@
 
 
 
-OutBreakLevel::OutBreakLevel(Window& window, std::vector<Texture>* loadedTextures) :
+OutBreakLevel::OutBreakLevel(Window& window, std::map<std::string, Texture>* loadedTextures) :
 	/************ models ************/
 	woodBrickModel{ "./res/model/container/container.obj", glm::vec3{1.0f,0.0f,1.0f}, loadedTextures },
 	paperBrickModel{ "./res/model/container/container_cardboard.obj", glm::vec3{0.2f,0.2f,8.0f}, loadedTextures },

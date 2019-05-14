@@ -1,6 +1,6 @@
 #include "ShadowsDemoLevel.h"
 
-ShadowsDemoLevel::ShadowsDemoLevel(const Window& window, std::vector<Texture>& loadedTextures)
+ShadowsDemoLevel::ShadowsDemoLevel(const Window& window, std::map<std::string, Texture>& loadedTextures)
 {
 	/* game status */
 	m_state = GameState::GAME_ACTIVE;

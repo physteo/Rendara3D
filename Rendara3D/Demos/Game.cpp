@@ -1,10 +1,7 @@
 #include "Game.h"
 
 Game::Game(GLuint widthIn, GLuint heightIn) :
-	m_window{ "game", widthIn, heightIn, Monitor::G_NOTSPECIFIED }
-{
-	m_loadedTextures.reserve(100);
-}
+	m_window{ "game", widthIn, heightIn, Monitor::G_NOTSPECIFIED } {}
 
 
 void Game::execute()

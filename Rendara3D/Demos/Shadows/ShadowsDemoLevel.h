@@ -50,7 +50,7 @@ namespace shadowsDemoParams
 class ShadowsDemoLevel : public GameLevel
 {
 public:
-	ShadowsDemoLevel(const Window& window, std::vector<Texture>& loadedTextures);
+	ShadowsDemoLevel(const Window& window, std::map<std::string, Texture>& loadedTextures);
 	void render(const Window& window) override;
 	void update(Window& window) override;
 

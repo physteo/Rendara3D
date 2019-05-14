@@ -3,7 +3,6 @@
 
 
 OutBreak::OutBreak(GLuint widthIn, GLuint heightIn) :
-	loadedTextures{},
 	window{ "game", widthIn, heightIn, Monitor::G_NOTSPECIFIED }
 {
 }
@@ -11,7 +10,6 @@ OutBreak::OutBreak(GLuint widthIn, GLuint heightIn) :
 
 void OutBreak::execute()
 {
-	loadedTextures.reserve(100);
 	// without instance example
 	std::vector< std::vector<std::vector<int> > > levelLayouts;
 	levelLayouts.push_back({ {2,3,2,3,2,0,2,3,2,3,2,3} });

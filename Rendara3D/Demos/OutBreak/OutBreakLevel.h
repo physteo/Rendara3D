@@ -45,7 +45,7 @@ class OutBreakLevel
 
 
 public:
-	OutBreakLevel(Window& window, std::vector<Texture>* loadedTextures);
+	OutBreakLevel(Window& window, std::map<std::string, Texture>* loadedTextures);
 
 	void load(const std::vector<std::vector<int> >& layout);
 	void render(Window& window);

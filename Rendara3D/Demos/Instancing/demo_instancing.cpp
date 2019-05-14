@@ -50,8 +50,7 @@ int demo_instancing()
 	glm::mat4 projection = glm::perspective(glm::radians(90.0f), width / height, 0.1f, 50.0f);
 
 	/* load models */
-	std::vector<Texture> loadedTextures;
-	loadedTextures.reserve(100);
+	std::map<std::string, Texture> loadedTextures;
 	Model cube{ "./res/model/cube/cube.obj",glm::vec3{115.,194.,251.} / 255.0f, &loadedTextures };
 	Model sphere{ "./res/model/sphere/sphere.obj", &loadedTextures };
 	Model piramid{ "./res/model/piramid/piramid.obj",glm::vec3{255.,60.,60.} / 255.0f,  &loadedTextures };

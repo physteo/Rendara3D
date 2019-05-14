@@ -1,6 +1,7 @@
 #pragma once
 
 #include <regex>
+#include <map>
 
 #include <assimp/Importer.hpp>
 #include <assimp/scene.h>
@@ -29,7 +30,7 @@ public:
 		m_defaultColor = glm::vec3{1.0f};
 		m_castsShadows = false;
 	}
-	Model(const std::string path, const glm::vec3& defaultColor, std::vector<Texture>* loadedTextures)
+	Model(const std::string path, const glm::vec3& defaultColor, std::map<std::string, Texture>* loadedTextures)
 	{
 		m_path = path;
 		m_defaultColor = defaultColor;
@@ -37,7 +38,7 @@ public:
 		m_castsShadows = false;
 	}
 
-	Model(const std::string path, std::vector<Texture>* loadedTextures) : Model{ path, glm::vec3{1.0f}, loadedTextures }
+	Model(const std::string path, std::map<std::string, Texture>* loadedTextures) : Model{ path, glm::vec3{1.0f}, loadedTextures }
 	{}	
 	
 	inline void castsShadows(bool casts)           {	m_castsShadows = casts;	}
@@ -63,9 +64,9 @@ private:
 	bool              m_castsShadows;
 
 
-	void loadModel(const std::string path, std::vector<Texture>* loadedTextures);
-	void processNode(aiNode* node,   const aiScene* scene, std::vector<Texture>* loadedTextures);
-	Mesh processMesh(aiMesh* aimesh, const aiScene* scene, std::vector<Texture>* loadedTextures);
-	Texture* loadMaterialTexture(aiMaterial* mat, aiTextureType type, Format internalFormat, std::vector<Texture>* loadedTextures);
+	void loadModel(const std::string path, std::map<std::string, Texture>* loadedTextures);
+	void processNode(const aiNode* node,   const aiScene* scene, std::map<std::string, Texture>* loadedTextures);
+	Mesh processMesh(const aiMesh* aimesh, const aiScene* scene, std::map<std::string, Texture>* loadedTextures);
+	Texture* loadTextureFromMaterial(const aiMaterial* mat, aiTextureType type, Format internalFormat, std::map<std::string, Texture>* loadedTextures);
 
 };
