@@ -8,6 +8,8 @@ Welcome to the source code of Rendara3D.
 
 You can download a demo <a href="https://dl.dropboxusercontent.com/s/bldd69moctoahwf/Rendara3D.zip?dl=0"><font color="blue">here</font></a> (requires Windows).
 
+<img src="https://media.giphy.com/media/PhZXSxW9JmXxGXoN5m/giphy.gif" alt="demo_shad" width="300"/> <img src="https://media.giphy.com/media/jOPY4nkgfMGDmcItN7/giphy.gif" alt="demo_shad" width="300"/> 
+
 Controls:
 ```python
 Demo 1: WASD(camera), arrows(light)
